@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 5554045}
   - component: {fileID: 5554044}
   - component: {fileID: 5554046}
+  - component: {fileID: 5554047}
   m_Layer: 0
   m_Name: MY_HERO
   m_TagString: Player
@@ -237,6 +238,23 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
+--- !u!95 &5554047
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 5554041}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 65363b8a96cb1784bba43cdc05d54f4f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &38904708
 GameObject:
   m_ObjectHideFlags: 0
