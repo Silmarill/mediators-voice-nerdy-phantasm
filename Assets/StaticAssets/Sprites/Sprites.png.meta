@@ -1,11 +1,12 @@
 fileFormatVersion: 2
 guid: 94de954d8621b484393dc725e3c900d6
-timeCreated: 1505398812
+timeCreated: 1505580636
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Player
     21300002: Ground
+    21300004: Spikes
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -93,7 +94,7 @@ TextureImporter:
         width: 16
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -107,7 +108,21 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spikes
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 80
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
