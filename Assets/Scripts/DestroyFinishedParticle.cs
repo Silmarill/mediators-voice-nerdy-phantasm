@@ -20,8 +20,9 @@ public class DestroyFinishedParticle : MonoBehaviour {
         Destroy(this.gameObject);
     }
 
-    //If we dont see it - destroy it
+
+
     void OnBecameInvisible() {
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 }

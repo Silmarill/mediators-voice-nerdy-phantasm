@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D _r2d;
     private Transform _tr;
 
+    public Transform firePoint;
+    public GameObject projectile;
 
 
     void Start() {
@@ -79,6 +81,10 @@ public class PlayerController : MonoBehaviour {
         } else if (_r2d.velocity.x < 0) {
             _tr.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
         }
+
+         if (Input.GetKeyDown(KeyCode.Return) ) {
+             Instantiate(projectile, firePoint.position, firePoint.rotation);
+         }
 
 
     }

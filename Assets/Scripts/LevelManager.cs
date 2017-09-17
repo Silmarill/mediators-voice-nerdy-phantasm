@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour {
 
     public float respawnDelay;
 
-    private float gravityStorage;
+    public CameraController camcon;
 
 
     //Пенальти потом нужно перенести в  Hazard-объекты
@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour {
         // TODO: Если будет мультиплеер - тут будет затык
         player = FindObjectOfType <PlayerController>();
         _r2dPlayer = player.GetComponent <Rigidbody2D>();
-        gravityStorage = _r2dPlayer.gravityScale;
+        camcon = FindObjectOfType <CameraController>();
     }
 
 
@@ -43,16 +43,15 @@ public class LevelManager : MonoBehaviour {
         //TODO: Подумать, можно ли просто вырубить его через SetActive
         player.enabled = false;
         player.GetComponent <SpriteRenderer>().enabled = false;
-        player.GetComponent <Rigidbody2D>().velocity = Vector2.zero;
-        player.GetComponent <Rigidbody2D>().gravityScale = 0f;
+        _r2dPlayer.velocity = Vector2.zero;
+        camcon.isFollowin = false;
 
         //TODO: Перенести в Hazards
         ScoreManager.AddPoints(-pointPenaltyOnDeath);
 
         yield return new WaitForSeconds(respawnDelay);
 
-        //TODO: Move magic numbers to fields
-        player.GetComponent <Rigidbody2D>().gravityScale = gravityStorage;
+        camcon.isFollowin = true;
         player.transform.position = currentCheckpoint.transform.position;
         player.enabled = true;
         player.GetComponent <SpriteRenderer>().enabled = true;
