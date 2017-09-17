@@ -19,4 +19,9 @@ public class DestroyFinishedParticle : MonoBehaviour {
         //TODO: Убрать алокацию
         Destroy(this.gameObject);
     }
+
+    //If we dont see it - destroy it
+    void OnBecameInvisible() {
+        Destroy(gameObject);
+    }
 }

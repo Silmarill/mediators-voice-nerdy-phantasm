@@ -14,15 +14,19 @@ public class LevelManager : MonoBehaviour {
 
     public float respawnDelay;
 
+    private float gravityStorage;
+
 
     //Пенальти потом нужно перенести в  Hazard-объекты
     public int pointPenaltyOnDeath;
 
-
+    private Rigidbody2D _r2dPlayer;
 
     void Start() {
         // TODO: Если будет мультиплеер - тут будет затык
         player = FindObjectOfType <PlayerController>();
+        _r2dPlayer = player.GetComponent <Rigidbody2D>();
+        gravityStorage = _r2dPlayer.gravityScale;
     }
 
 
@@ -40,12 +44,15 @@ public class LevelManager : MonoBehaviour {
         player.enabled = false;
         player.GetComponent <SpriteRenderer>().enabled = false;
         player.GetComponent <Rigidbody2D>().velocity = Vector2.zero;
+        player.GetComponent <Rigidbody2D>().gravityScale = 0f;
 
         //TODO: Перенести в Hazards
         ScoreManager.AddPoints(-pointPenaltyOnDeath);
 
         yield return new WaitForSeconds(respawnDelay);
 
+        //TODO: Move magic numbers to fields
+        player.GetComponent <Rigidbody2D>().gravityScale = gravityStorage;
         player.transform.position = currentCheckpoint.transform.position;
         player.enabled = true;
         player.GetComponent <SpriteRenderer>().enabled = true;
@@ -53,4 +60,8 @@ public class LevelManager : MonoBehaviour {
         //TODO: Нужно переделать инстанцирование на смену позиции объекта+запуск партикл-эффекта (Play)
         Instantiate(respawnParticle, currentCheckpoint.transform.position, Quaternion.identity);
     }
+
+
+
+
 }
