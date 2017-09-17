@@ -1,15 +1,11 @@
 fileFormatVersion: 2
-guid: 94de954d8621b484393dc725e3c900d6
-timeCreated: 1505643025
+guid: 55870a760d181614c9f879378f3e1222
+timeCreated: 1505627486
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Player
-    21300002: Ground
-    21300004: Spikes
-    21300006: Player_Walking_1
-    21300008: Player_Walking_2
-    21300010: Coin_1
+    21300000: tile_0
+    21300002: tile_1
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -36,7 +32,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -1
     wrapU: 1
@@ -50,8 +46,8 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 66}
+  spritePixelsToUnits: 256
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -62,25 +58,25 @@ TextureImporter:
   textureFormatSet: 0
   platformSettings:
   - buildTarget: DefaultTexturePlatform
-    maxTextureSize: 128
+    maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Standalone
-    maxTextureSize: 128
+    maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Android
-    maxTextureSize: 128
+    maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -89,85 +85,29 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player
+      name: tile_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 112
-        width: 16
-        height: 12
+        y: 0
+        width: 256
+        height: 190
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Ground
+      name: tile_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 80
-        width: 16
-        height: 16
+        y: 0
+        width: 256
+        height: 189
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Spikes
-      rect:
-        serializedVersion: 2
-        x: 17
-        y: 80
-        width: 14
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Player_Walking_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 112
-        width: 16
-        height: 12
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Player_Walking_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 112
-        width: 16
-        height: 12
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Coin_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 84
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

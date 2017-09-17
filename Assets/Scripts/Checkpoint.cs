@@ -14,9 +14,6 @@ public class Checkpoint : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D senpai) {
         if (senpai.name == "MY_HERO") {
-            Debug.Log("Checkpoint Reached!" + transform.position);
-            //this - скрипть Checkpoint.cs 
-            //gameObject - объект на котором он висит (можно использовать без this)
             levelManager.currentCheckpoint = this.gameObject;
         }
     }

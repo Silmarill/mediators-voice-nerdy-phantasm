@@ -13,8 +13,10 @@ public class DestroyFinishedParticle : MonoBehaviour {
     
     
     void Update () {
-        if (_ps.isPlaying) return;
-        // Уничтожение и создание объекта - это аллоакция памяти. Их лучше избегать.
+        if (_ps.isPlaying) {
+            return;
+        }
+        //TODO: Убрать алокацию
         Destroy(this.gameObject);
     }
 }
