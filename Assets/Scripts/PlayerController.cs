@@ -32,8 +32,11 @@ public class PlayerController : MonoBehaviour {
     public float shotDelay;
     private float shotDelayCounter;
 
+        private AudioSource _aus;
+
 
     void Start() {
+        _aus = GetComponent <AudioSource>();
         _r2d = GetComponent <Rigidbody2D>();
         _ator = GetComponent <Animator>();
         _tr = GetComponent <Transform>();
@@ -101,6 +104,7 @@ public class PlayerController : MonoBehaviour {
 
 
     public void Jump() {
+        _aus.Play();
         _r2d.velocity = new Vector2(_r2d.velocity.x, jumpHeight);
     }
 }

@@ -47,7 +47,4 @@ public class ProjectileController : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    void OnBecameInvisible() {
-        Destroy(this.gameObject);
-    }
 }

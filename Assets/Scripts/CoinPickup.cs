@@ -6,6 +6,8 @@ public class CoinPickup : MonoBehaviour {
 
     public int pointsToAdd;
 
+    public AudioSource _aus;
+
     void OnTriggerEnter2D(Collider2D senpai) {
 
         if (senpai.GetComponent <PlayerController>() == null) {
@@ -13,6 +15,7 @@ public class CoinPickup : MonoBehaviour {
         }
 
         ScoreManager.AddPoints(pointsToAdd);
+        _aus.Play();
         Destroy(gameObject);
     }
 }
