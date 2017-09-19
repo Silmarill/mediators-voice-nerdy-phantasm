@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50478987504329302}
   - component: {fileID: 114580575722518200}
   m_Layer: 10
-  m_Name: NinjaStar
+  m_Name: Projectile_NinjaStar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,6 +95,8 @@ MonoBehaviour:
   impactEffect: {fileID: 1587904326576880, guid: 68ca4994476dac840a6c8089a895ef7d,
     type: 2}
   pointsForKill: 5
+  rotationSpeed: -3600
+  damageToGive: 10
 --- !u!212 &212750298652304924
 SpriteRenderer:
   m_ObjectHideFlags: 1

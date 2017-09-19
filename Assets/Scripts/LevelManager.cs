@@ -15,12 +15,13 @@ public class LevelManager : MonoBehaviour {
     public float respawnDelay;
 
     public CameraController camcon;
-
-
+    
     //Пенальти потом нужно перенести в  Hazard-объекты
     public int pointPenaltyOnDeath;
 
     private Rigidbody2D _r2dPlayer;
+
+
 
     void Start() {
         // TODO: Если будет мультиплеер - тут будет затык

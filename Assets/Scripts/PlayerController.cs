@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour {
     public Transform firePoint;
     public GameObject projectile;
 
+    public float shotDelay;
+    private float shotDelayCounter;
+
 
     void Start() {
         _r2d = GetComponent <Rigidbody2D>();
@@ -81,10 +84,16 @@ public class PlayerController : MonoBehaviour {
         } else if (_r2d.velocity.x < 0) {
             _tr.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
         }
+       
 
-         if (Input.GetKeyDown(KeyCode.Return) ) {
-             Instantiate(projectile, firePoint.position, firePoint.rotation);
-         }
+        if (Input.GetKey(KeyCode.Return)) {
+            shotDelayCounter -= Time.deltaTime;
+            if (shotDelayCounter <= 0) {
+                shotDelayCounter = shotDelay;
+                //TODO: Replace with pool
+                Instantiate(projectile, firePoint.position, firePoint.rotation);
+            }
+        }
 
 
     }
