@@ -51,7 +51,7 @@ public class LevelManager : MonoBehaviour {
         ScoreManager.AddPoints(-pointPenaltyOnDeath);
 
         yield return new WaitForSeconds(respawnDelay);
-
+        player.knockbackCount = 0;
         camcon.isFollowin = true;
         player.transform.position = currentCheckpoint.transform.position;
         player.enabled = true;

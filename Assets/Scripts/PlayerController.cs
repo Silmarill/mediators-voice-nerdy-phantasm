@@ -32,7 +32,13 @@ public class PlayerController : MonoBehaviour {
     public float shotDelay;
     private float shotDelayCounter;
 
-        private AudioSource _aus;
+    private AudioSource _aus;
+
+    public float knockback;
+    public float knockbackLength;
+    public float knockbackCount;
+    public bool  knockFromRight;
+
 
 
     void Start() {
@@ -76,7 +82,22 @@ public class PlayerController : MonoBehaviour {
             moveVelosity = -moveSpeed;
         }
 
-        _r2d.velocity = new Vector2(moveVelosity, _r2d.velocity.y);
+
+
+        if (knockbackCount <= 0) {
+            _r2d.velocity = new Vector2(moveVelosity, _r2d.velocity.y);
+        } else {
+            if (knockFromRight) {
+                _r2d.velocity = new Vector2(-knockback, knockback);
+            }
+
+            if (!knockFromRight) {
+                _r2d.velocity = new Vector2(knockback, knockback);
+            }
+
+            knockbackCount -= Time.deltaTime;
+        }
+
 
         _ator.SetFloat("Speed", Mathf.Abs(_r2d.velocity.x));
         _ator.SetBool("isGrounded", isGrounded);
