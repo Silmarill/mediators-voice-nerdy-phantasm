@@ -190,7 +190,7 @@ MonoBehaviour:
     type: 2}
   pointsForKill: 5
   rotationSpeed: -3600
-  damageToGive: 10
+  damageToGive: 1
 --- !u!212 &212750298652304924
 SpriteRenderer:
   m_ObjectHideFlags: 1

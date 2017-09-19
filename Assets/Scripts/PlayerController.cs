@@ -119,7 +119,13 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
+        if (_ator.GetBool("isSword")) {
+             _ator.SetBool("isSword", false);
+        }
 
+        if (Input.GetKey(KeyCode.L)) {
+            _ator.SetBool("isSword", true);
+        }
     }
 
 

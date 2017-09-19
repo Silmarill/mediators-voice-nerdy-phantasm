@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 94de954d8621b484393dc725e3c900d6
-timeCreated: 1505649574
+timeCreated: 1505837036
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -14,6 +14,7 @@ TextureImporter:
     21300014: Enemy_2
     21300016: Enemy_3
     21300018: NinjaStar_0
+    21300020: TheSword
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -226,6 +227,20 @@ TextureImporter:
         y: 97
         width: 6
         height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TheSword
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 101
+        width: 9
+        height: 5
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
