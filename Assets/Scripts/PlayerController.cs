@@ -62,11 +62,11 @@ public class PlayerController : MonoBehaviour {
             isDoubleJumped = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded) {
+        if (Input.GetButtonDown("Jump") && isGrounded) {
             Jump();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !isDoubleJumped && !isGrounded) {
+        if (Input.GetButtonDown("Jump")  && !isDoubleJumped && !isGrounded) {
             Jump();
             isDoubleJumped = true;
         }
@@ -74,15 +74,8 @@ public class PlayerController : MonoBehaviour {
         //каждый кадр сбрасывается в 0, чтобы игрок не скользил из-за материала
         moveVelosity = 0f;
 
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
-            moveVelosity = moveSpeed;
-        }
-
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
-            moveVelosity = -moveSpeed;
-        }
-
-
+        // Edit - Project Setting - Input (for more info)
+        moveVelosity = moveSpeed * Input.GetAxisRaw("Horizontal");
 
         if (knockbackCount <= 0) {
             _r2d.velocity = new Vector2(moveVelosity, _r2d.velocity.y);
@@ -110,7 +103,7 @@ public class PlayerController : MonoBehaviour {
         }
        
 
-        if (Input.GetKey(KeyCode.Return)) {
+        if (Input.GetButtonDown("Fire1")) {
             shotDelayCounter -= Time.deltaTime;
             if (shotDelayCounter <= 0) {
                 shotDelayCounter = shotDelay;
@@ -123,7 +116,7 @@ public class PlayerController : MonoBehaviour {
              _ator.SetBool("isSword", false);
         }
 
-        if (Input.GetKey(KeyCode.L)) {
+        if (Input.GetButtonDown("Fire2")) {
             _ator.SetBool("isSword", true);
         }
     }

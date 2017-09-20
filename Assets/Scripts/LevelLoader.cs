@@ -14,7 +14,7 @@ public class LevelLoader : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.S) && isPlayerInZone) {
+        if (Input.GetAxisRaw("Vertical") < 0 && isPlayerInZone) {
             //Method to switch scenes
             SceneManager.LoadScene(levelToLoad);
         }
