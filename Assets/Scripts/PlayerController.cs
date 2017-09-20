@@ -39,6 +39,12 @@ public class PlayerController : MonoBehaviour {
     public float knockbackCount;
     public bool  knockFromRight;
 
+    //Ladder var's
+    public bool  isOnLadder;
+    private float climbVelosity;
+    public float climbSpeed;
+    private float gravityStore;
+
 
 
     void Start() {
@@ -46,6 +52,7 @@ public class PlayerController : MonoBehaviour {
         _r2d = GetComponent <Rigidbody2D>();
         _ator = GetComponent <Animator>();
         _tr = GetComponent <Transform>();
+        gravityStore = _r2d.gravityScale;
     }
 
 
@@ -119,6 +126,19 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButtonDown("Fire2")) {
             _ator.SetBool("isSword", true);
         }
+
+        //TODO: Jump vector is NOT affected
+        if (isOnLadder) {
+            _r2d.gravityScale = 0.0f;
+            climbVelosity = climbSpeed * Input.GetAxisRaw("Vertical");
+            _r2d.velocity = new Vector2(_r2d.velocity.x, climbVelosity);
+
+        }
+
+        if (!isOnLadder) {
+            _r2d.gravityScale = gravityStore;
+        }
+
     }
 
 
