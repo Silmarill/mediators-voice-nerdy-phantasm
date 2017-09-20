@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fa1548d31a72f94fb39c1bfffbc373a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingTime: 30
+  startingTime: 200
   gameOverScreen: {fileID: 1260290014249434}
 --- !u!114 &114000982113281670
 MonoBehaviour:

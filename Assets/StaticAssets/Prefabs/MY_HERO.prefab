@@ -144,7 +144,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1054482966169130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.6560316, y: -1.1225101, z: 0}
+  m_LocalPosition: {x: -5.9, y: -2.195, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4187301864987672}
@@ -239,7 +239,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.058535993}
+  m_Offset: {x: 0.0011143684, y: 0.0473938}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -250,7 +250,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.38, y: 0.142928}
+  m_Size: {x: 0.2574358, y: 0.120643616}
   m_EdgeRadius: 0
 --- !u!82 &82569422507205400
 AudioSource:
@@ -411,6 +411,8 @@ MonoBehaviour:
   knockbackLength: 0.5
   knockbackCount: 0
   knockFromRight: 0
+  isOnLadder: 0
+  climbSpeed: 5
 --- !u!212 &212321420103993634
 SpriteRenderer:
   m_ObjectHideFlags: 1
