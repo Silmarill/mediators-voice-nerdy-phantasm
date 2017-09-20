@@ -8,15 +8,17 @@ public class HealthManager : MonoBehaviour {
     public int maxPlayerHealth;
     public static int playerHealth;
 
-    public Text txtHealt;
+    private Text txtHealt;
 
     private LevelManager _lvlManager;
+    private LifeManager _lfManager;
 
     
     void Start() {
-       // txtHealt = GetComponent <Text>();
+        txtHealt = GetComponent <Text>();
        
         _lvlManager = FindObjectOfType <LevelManager>();
+        _lfManager= FindObjectOfType <LifeManager>();
         FullHealth();
     }
 
@@ -25,8 +27,10 @@ public class HealthManager : MonoBehaviour {
     void Update() {
         if (playerHealth <= 0) {
             playerHealth = 0;
+            _lfManager.TakeLife();
             _lvlManager.RespawnPlayer();
             FullHealth();
+            
 
              
         }
