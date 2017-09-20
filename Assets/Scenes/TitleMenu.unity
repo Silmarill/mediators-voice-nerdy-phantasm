@@ -310,8 +310,8 @@ MonoBehaviour:
   playerStartScore: 0
   playerStartHealth: 7
   playerCurrentHealth: 7
-  startLevel: {fileID: 102900000, guid: 82b0788a5cd89f94cb35ad092f3fc8c6, type: 3}
-  levelSelect: {fileID: 102900000, guid: cc7b8e55cfb04bc4baa7ab0aca09f886, type: 3}
+  startLevel: Level 1
+  levelSelect: LevelSelect
 --- !u!1 &1220378950
 GameObject:
   m_ObjectHideFlags: 0

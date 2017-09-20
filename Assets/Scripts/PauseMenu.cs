@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour {
 
-    public SceneAsset   levelSelect;
-    public SceneAsset   mainMenu;
+    public string  levelSelect;
+    public string   mainMenu;
 
     public bool isPaused;
     public GameObject pauseMenuCanvas;
@@ -32,10 +32,10 @@ public class PauseMenu : MonoBehaviour {
     }
 
     public void LevelSelect() {
-        SceneManager.LoadScene(levelSelect.name);
+        SceneManager.LoadScene(levelSelect);
     }
 
     public void QuitToMain() {
-          SceneManager.LoadScene(mainMenu.name);
+          SceneManager.LoadScene(mainMenu);
     }
 }

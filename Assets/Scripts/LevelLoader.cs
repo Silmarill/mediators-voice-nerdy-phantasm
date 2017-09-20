@@ -16,6 +16,7 @@ public class LevelLoader : MonoBehaviour {
     void Update() {
         if (Input.GetAxisRaw("Vertical") < 0 && isPlayerInZone) {
             //Method to switch scenes
+           
             SceneManager.LoadScene(levelToLoad);
         }
     }
@@ -28,7 +29,7 @@ public class LevelLoader : MonoBehaviour {
 
      void OnTriggerExit2D(Collider2D other) {
         if (other.name == "MY_HERO") {
-            isPlayerInZone = true;
+            isPlayerInZone = false;
         }
     }
 }

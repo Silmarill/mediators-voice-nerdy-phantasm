@@ -127,7 +127,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1838745999473842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.79, y: -0.81, z: -0.34}
+  m_LocalPosition: {x: 8.214, y: -0.875, z: -0.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4746121012424058}
@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46bbba1c3c8fffe49ae6abdf83a3d766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRange: 3
+  playerRange: 5
   enemyStar: {fileID: 1502159333856252, guid: 21553e3de93bbf04aad9fcbd08010160, type: 2}
   launchPoint: {fileID: 4465604288484516}
   waitBetweenShoots: 0.5

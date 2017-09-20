@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,7 +15,7 @@ public class LifeManager : MonoBehaviour {
     public GameObject gameOverScreen;
     private PlayerController player;
 
-    public SceneAsset mainMenu;
+    public string mainMenu;
     public float timeToWaitAfterGameOver;
     // Use this for initialization
     void Start () {
@@ -40,7 +40,7 @@ public class LifeManager : MonoBehaviour {
         if (gameOverScreen.activeSelf) {
            timeToWaitAfterGameOver -= Time.deltaTime;
             if (timeToWaitAfterGameOver < 0) {
-                SceneManager.LoadScene(mainMenu.name);
+                SceneManager.LoadScene(name);
             }
         }
     }
