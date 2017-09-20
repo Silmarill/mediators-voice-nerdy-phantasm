@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour {
 
-    public int maxPlayerHealth;
+
     public static int playerHealth;
 
     private Text txtHealt;
@@ -19,7 +19,7 @@ public class HealthManager : MonoBehaviour {
        
         _lvlManager = FindObjectOfType <LevelManager>();
         _lfManager= FindObjectOfType <LifeManager>();
-        FullHealth();
+        playerHealth = PlayerPrefs.GetInt("CurrentHealth"); 
     }
 
 
@@ -39,16 +39,17 @@ public class HealthManager : MonoBehaviour {
        
     }
 
-
-    private void Reset() {
-        playerHealth = maxPlayerHealth;
-    }
-
+    
     public static void HurtPlayer(int damageToGive) {
         playerHealth -= damageToGive;
+        PlayerPrefs.SetInt("CurrentHealth", playerHealth); 
     }
 
     public void FullHealth() {
-        playerHealth = maxPlayerHealth;
+        playerHealth = PlayerPrefs.GetInt("MaxHealth"); 
+         PlayerPrefs.SetInt("CurrentHealth", playerHealth); 
+
+       
+        
     }
 }

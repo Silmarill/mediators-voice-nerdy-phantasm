@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour {
         }
        
 
-        if (Input.GetButtonDown("Fire1")) {
+        if (Input.GetButton("Fire1")) {
             shotDelayCounter -= Time.deltaTime;
             if (shotDelayCounter <= 0) {
                 shotDelayCounter = shotDelay;

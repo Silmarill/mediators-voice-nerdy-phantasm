@@ -9,7 +9,6 @@ public class ScoreManager : MonoBehaviour {
     private Text text;
 
 
-
     void Start() {
         text = GetComponent <Text>();
         Reset();
@@ -25,16 +24,18 @@ public class ScoreManager : MonoBehaviour {
         text.text = score.ToString();
     }
 
-
+    
 
     public static void AddPoints(int pointsToAdd) {
         score += pointsToAdd;
+        PlayerPrefs.SetInt("Score", score);
     }
 
 
 
+
     public static void Reset() {
-        score = 0;
+        score = PlayerPrefs.GetInt("Score");
     }
 
 }

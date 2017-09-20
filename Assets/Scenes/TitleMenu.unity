@@ -306,6 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ca5b0e89898b5b4b8e2ae2dc299c78f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLives: 3
   startLevel: {fileID: 102900000, guid: 82b0788a5cd89f94cb35ad092f3fc8c6, type: 3}
   levelSelect: {fileID: 102900000, guid: cc7b8e55cfb04bc4baa7ab0aca09f886, type: 3}
 --- !u!1 &1220378950
