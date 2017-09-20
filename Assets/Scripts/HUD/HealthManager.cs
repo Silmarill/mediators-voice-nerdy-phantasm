@@ -12,14 +12,14 @@ public class HealthManager : MonoBehaviour {
 
     private LevelManager _lvlManager;
     private LifeManager _lfManager;
+    private TimeManager _timManager;
 
-    
     void Start() {
         txtHealt = GetComponent <Text>();
-       
+        _timManager = FindObjectOfType <TimeManager>();
         _lvlManager = FindObjectOfType <LevelManager>();
-        _lfManager= FindObjectOfType <LifeManager>();
-        playerHealth = PlayerPrefs.GetInt("CurrentHealth"); 
+        _lfManager = FindObjectOfType <LifeManager>();
+        playerHealth = PlayerPrefs.GetInt("CurrentHealth");
     }
 
 
@@ -29,9 +29,9 @@ public class HealthManager : MonoBehaviour {
             playerHealth = 0;
             _lfManager.TakeLife();
             _lvlManager.RespawnPlayer();
+            _timManager.ResetTime();
             FullHealth();
             
-
              
         }
 
@@ -47,9 +47,12 @@ public class HealthManager : MonoBehaviour {
 
     public void FullHealth() {
         playerHealth = PlayerPrefs.GetInt("MaxHealth"); 
-         PlayerPrefs.SetInt("CurrentHealth", playerHealth); 
-
-       
-        
+         PlayerPrefs.SetInt("CurrentHealth", playerHealth);
     }
+
+    public void KillPlayer() {
+        playerHealth = 0;
+
+    }
+
 }
