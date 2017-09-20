@@ -147,4 +147,16 @@ public class PlayerController : MonoBehaviour {
         _aus.Play();
         _r2d.velocity = new Vector2(_r2d.velocity.x, jumpHeight);
     }
+
+    void OnCollisionEnter2D(Collision2D other) {
+        if (other.transform.tag == "MovingPlatform") {
+            _tr.parent = other.transform.GetComponent<Transform>();
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D other) {
+        if (other.transform.tag == "MovingPlatform") {
+            _tr.parent = null;
+        }
+    }
 }
