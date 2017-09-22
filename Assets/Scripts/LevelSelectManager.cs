@@ -86,12 +86,14 @@ public class LevelSelectManager : MonoBehaviour {
         //TODO: Use DOTween for map with roads
         _tr.position = Vector3.MoveTowards(_tr.position, targetPos, moveSpeed * Time.deltaTime);
 
+         #if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
         if (Input.GetButtonDown("Fire1") || Input.GetButtonDown("Jump")){
             if (levelUnlocked[posIndex] && !isToucheModeEnabled) {
                PlayerPrefs.SetInt("LevelIndexPosStore", posIndex);
                SceneManager.LoadScene(levelNames[posIndex]);
             }
         }
+        #endif
 
     }
 }

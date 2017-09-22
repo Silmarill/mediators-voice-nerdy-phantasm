@@ -43,6 +43,10 @@ public class ProjectileController : MonoBehaviour {
             // ScoreManager.AddPoints(pointsForKill);
             other.GetComponent<EnemyHealthManager>().GiveDamage(damageToGive);
         }
+
+        if (other.tag == "Boss") {
+            other.GetComponent<BossHealthManager>().GiveDamage(damageToGive);
+        }
         Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(gameObject);
     }

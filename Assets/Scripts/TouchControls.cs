@@ -9,6 +9,10 @@ public class TouchControls : MonoBehaviour {
     private PauseMenu pausMenu;
     // Use this for initialization
     void Start () {
+         #if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
+        gameObject.SetActive(false);
+        return;
+        #endif
         _p = FindObjectOfType <PlayerController>();
         levelExit = FindObjectOfType <LevelLoader>();
         pausMenu  = FindObjectOfType <PauseMenu>();

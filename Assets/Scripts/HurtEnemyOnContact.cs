@@ -16,10 +16,6 @@ public class HurtEnemyOnContact : MonoBehaviour {
         _r2d = GetComponentInParent <Rigidbody2D>();
     }
     
-    // Update is called once per frame
-    void Update () {
-        
-    }
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Enemy") {

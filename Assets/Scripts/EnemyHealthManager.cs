@@ -9,8 +9,7 @@ public class EnemyHealthManager : MonoBehaviour {
     public int pointsOnDeath;
 
     private AudioSource _aus;
-
-
+    
     // Use this for initialization
     void Start () {
         _aus = GetComponent <AudioSource>();
