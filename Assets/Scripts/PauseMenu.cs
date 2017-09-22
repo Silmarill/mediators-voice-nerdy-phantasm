@@ -24,7 +24,7 @@ public class PauseMenu : MonoBehaviour {
             Time.timeScale = 1;
         }
 
-        #if UNITY_STANDALONE || UNITY_WEBPLAYER
+       #if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
          if (Input.GetKeyDown(KeyCode.Escape)) {
             TogglePause();
          }

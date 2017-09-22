@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour {
 
        
         _ator.SetBool("isGrounded", isGrounded);
-          #if UNITY_STANDALONE || UNITY_WEBPLAYER
+         #if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
 
         if (Input.GetButtonDown("Jump") && isGrounded) {
             Jump();
@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour {
         }
 
       
-          #if UNITY_STANDALONE || UNITY_WEBPLAYER
+         #if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
         if (Input.GetButton("Fire1")) {
             shotDelayCounter -= Time.deltaTime;
             if (shotDelayCounter <= 0) {
@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour {
         //TODO: Jump vector is NOT affected
         if (isOnLadder) {
             _r2d.gravityScale = 0.0f;
-             #if UNITY_STANDALONE || UNITY_WEBPLAYER
+             #if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
             Climb(Input.GetAxisRaw("Vertical"));
             #endif
             //climbVelosity = climbSpeed * ;

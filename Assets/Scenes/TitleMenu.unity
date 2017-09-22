@@ -311,7 +311,7 @@ MonoBehaviour:
   playerStartHealth: 7
   playerCurrentHealth: 7
   startLevel: Level 1
-  levelSelect: LevelSelect
+  levelSelect: Level 3
 --- !u!1 &1220378950
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +379,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Level Select
+  m_Text: New Game
 --- !u!222 &1220378953
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -759,7 +759,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Game
+  m_Text: Level Kai test
 --- !u!222 &1843554589
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -175,6 +175,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   isInRange: 0
+  isFollowOnLookAway: 1
 --- !u!114 &114880162280069894
 MonoBehaviour:
   m_ObjectHideFlags: 1
