@@ -7,6 +7,7 @@ public class LevelLoader : MonoBehaviour {
 
     public bool isPlayerInZone;
     public string levelToLoad;
+    public string LevelTag;
 
     // Use this for initialization
     void Start () {
@@ -14,7 +15,7 @@ public class LevelLoader : MonoBehaviour {
     }
 
     void Update() {
-        #if UNITY_STANDALONE || UNITY_WEBPLAYER
+        #if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
          if (Input.GetAxisRaw("Vertical") < 0 && isPlayerInZone) {
              //Method to switch scenes
              LoadLevel();
@@ -23,7 +24,8 @@ public class LevelLoader : MonoBehaviour {
     }
 
     public void LoadLevel() {
-            SceneManager.LoadScene(levelToLoad);
+        PlayerPrefs.SetInt(LevelTag, 1);
+        SceneManager.LoadScene(levelToLoad);
     }
 
     void OnTriggerEnter2D(Collider2D other) {

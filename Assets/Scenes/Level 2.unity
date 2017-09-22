@@ -3153,7 +3153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94409f9b7980ed74bae8b05c6af07f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerInZone: 0
   levelToLoad: LevelSelect
+  LevelTag: Level3Lock
 --- !u!1 &719420462
 GameObject:
   m_ObjectHideFlags: 0
