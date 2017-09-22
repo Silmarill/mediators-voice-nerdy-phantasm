@@ -69,6 +69,10 @@ public class PlayerController : MonoBehaviour {
             isDoubleJumped = false;
         }
 
+       
+        _ator.SetBool("isGrounded", isGrounded);
+          #if UNITY_STANDALONE || UNITY_WEBPLAYER
+
         if (Input.GetButtonDown("Jump") && isGrounded) {
             Jump();
         }
@@ -76,13 +80,17 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButtonDown("Jump")  && !isDoubleJumped && !isGrounded) {
             Jump();
             isDoubleJumped = true;
-        }
+        }  
+
+         Move(Input.GetAxisRaw("Horizontal"));
+        #endif
 
         //каждый кадр сбрасывается в 0, чтобы игрок не скользил из-за материала
-        moveVelosity = 0f;
+        //moveVelosity = 0f;
 
         // Edit - Project Setting - Input (for more info)
-        moveVelosity = moveSpeed * Input.GetAxisRaw("Horizontal");
+        // moveVelosity = moveSpeed * Input.GetAxisRaw("Horizontal");
+       
 
         if (knockbackCount <= 0) {
             _r2d.velocity = new Vector2(moveVelosity, _r2d.velocity.y);
@@ -99,38 +107,47 @@ public class PlayerController : MonoBehaviour {
         }
 
 
-        _ator.SetFloat("Speed", Mathf.Abs(_r2d.velocity.x));
-        _ator.SetBool("isGrounded", isGrounded);
+         _ator.SetFloat("Speed", Mathf.Abs(_r2d.velocity.x));
 
 
         if (_r2d.velocity.x > 0) {
             _tr.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         } else if (_r2d.velocity.x < 0) {
             _tr.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
-        }
-       
 
+        }
+
+      
+          #if UNITY_STANDALONE || UNITY_WEBPLAYER
         if (Input.GetButton("Fire1")) {
             shotDelayCounter -= Time.deltaTime;
             if (shotDelayCounter <= 0) {
                 shotDelayCounter = shotDelay;
                 //TODO: Replace with pool
-                Instantiate(projectile, firePoint.position, firePoint.rotation);
+                //Instantiate(projectile, firePoint.position, firePoint.rotation);
+                Fire();
             }
         }
 
         if (_ator.GetBool("isSword")) {
-             _ator.SetBool("isSword", false);
+             //_ator.SetBool("isSword", false);
+              SwordReset();
         }
 
         if (Input.GetButtonDown("Fire2")) {
-            _ator.SetBool("isSword", true);
+            Sword();
+            //_ator.SetBool("isSword", true);
         }
+
+        #endif
 
         //TODO: Jump vector is NOT affected
         if (isOnLadder) {
             _r2d.gravityScale = 0.0f;
-            climbVelosity = climbSpeed * Input.GetAxisRaw("Vertical");
+             #if UNITY_STANDALONE || UNITY_WEBPLAYER
+            Climb(Input.GetAxisRaw("Vertical"));
+            #endif
+            //climbVelosity = climbSpeed * ;
             _r2d.velocity = new Vector2(_r2d.velocity.x, climbVelosity);
 
         }
@@ -141,11 +158,37 @@ public class PlayerController : MonoBehaviour {
 
     }
 
+    public void Climb(float moveInput) {
+        climbVelosity = climbSpeed * moveInput;
+    }
 
+    public void Move(float moveInput) {
+        moveVelosity = moveSpeed * moveInput;
+    }
+
+    public void Fire() {
+        Instantiate(projectile, firePoint.position, firePoint.rotation);
+    }
+
+    public void Sword() {
+        _ator.SetBool("isSword", true);
+    }
+
+     public void SwordReset() {
+        _ator.SetBool("isSword", false);
+    }
 
     public void Jump() {
         _aus.Play();
-        _r2d.velocity = new Vector2(_r2d.velocity.x, jumpHeight);
+
+        if (isGrounded) {
+            _r2d.velocity = new Vector2(_r2d.velocity.x, jumpHeight);
+        }
+
+        if (!isDoubleJumped && !isGrounded) {
+            _r2d.velocity = new Vector2(_r2d.velocity.x, jumpHeight);
+            isDoubleJumped = true;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D other) {

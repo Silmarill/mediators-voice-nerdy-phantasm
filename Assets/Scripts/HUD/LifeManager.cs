@@ -40,7 +40,7 @@ public class LifeManager : MonoBehaviour {
         if (gameOverScreen.activeSelf) {
            timeToWaitAfterGameOver -= Time.deltaTime;
             if (timeToWaitAfterGameOver < 0) {
-                SceneManager.LoadScene(name);
+                SceneManager.LoadScene(mainMenu);
             }
         }
     }

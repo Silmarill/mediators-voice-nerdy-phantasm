@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour {
 
-    private bool isPlayerInZone;
+    public bool isPlayerInZone;
     public string levelToLoad;
 
     // Use this for initialization
@@ -14,11 +14,16 @@ public class LevelLoader : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetAxisRaw("Vertical") < 0 && isPlayerInZone) {
-            //Method to switch scenes
-           
+        #if UNITY_STANDALONE || UNITY_WEBPLAYER
+         if (Input.GetAxisRaw("Vertical") < 0 && isPlayerInZone) {
+             //Method to switch scenes
+             LoadLevel();
+         }
+        #endif
+    }
+
+    public void LoadLevel() {
             SceneManager.LoadScene(levelToLoad);
-        }
     }
 
     void OnTriggerEnter2D(Collider2D other) {

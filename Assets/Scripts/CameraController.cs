@@ -22,7 +22,7 @@ public class CameraController : MonoBehaviour {
     
     //TODO: Make some sweet lerp;   
     void Update () {
-        if (isFollowin) {
+        if (isFollowin &&  _trPlayer!=null) {
             _tr.position = new Vector3(_trPlayer.position.x + xOffset,
                                        _trPlayer.position.y + yOffset,
                                        _tr.position.z);

@@ -12,6 +12,8 @@ public class PauseMenu : MonoBehaviour {
     public bool isPaused;
     public GameObject pauseMenuCanvas;
 
+    
+
 
     void Update() {
         if (isPaused) {
@@ -22,9 +24,15 @@ public class PauseMenu : MonoBehaviour {
             Time.timeScale = 1;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            isPaused = !isPaused;
-        }
+        #if UNITY_STANDALONE || UNITY_WEBPLAYER
+         if (Input.GetKeyDown(KeyCode.Escape)) {
+            TogglePause();
+         }
+        #endif
+    }
+
+    public void TogglePause() {
+        isPaused = !isPaused;
     }
 
     public void ResumeGame() {
