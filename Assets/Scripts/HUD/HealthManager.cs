@@ -7,19 +7,26 @@ public class HealthManager : MonoBehaviour {
 
 
     public static int playerHealth;
+    private int maxPlayerHealth ;
 
-    private Text txtHealt;
+    private Slider _hpBar;
+   //    private Text txtHealt;
 
     private LevelManager _lvlManager;
     private LifeManager _lfManager;
     private TimeManager _timManager;
 
     void Start() {
-        txtHealt = GetComponent <Text>();
+        //txtHealt = GetComponent <Text>();
+        _hpBar = GetComponent <Slider>();
+
         _timManager = FindObjectOfType <TimeManager>();
         _lvlManager = FindObjectOfType <LevelManager>();
         _lfManager = FindObjectOfType <LifeManager>();
         playerHealth = PlayerPrefs.GetInt("CurrentHealth");
+        maxPlayerHealth =  PlayerPrefs.GetInt("MaxHealth");
+        _hpBar.maxValue = maxPlayerHealth;
+
     }
 
 
@@ -35,8 +42,13 @@ public class HealthManager : MonoBehaviour {
              
         }
 
-        txtHealt.text = playerHealth.ToString();
-       
+        if (playerHealth > maxPlayerHealth) {
+            playerHealth = maxPlayerHealth;
+        }
+
+       // txtHealt.text = playerHealth.ToString();
+        _hpBar.value = playerHealth;
+
     }
 
     
@@ -46,7 +58,7 @@ public class HealthManager : MonoBehaviour {
     }
 
     public void FullHealth() {
-        playerHealth = PlayerPrefs.GetInt("MaxHealth"); 
+        playerHealth = maxPlayerHealth;
          PlayerPrefs.SetInt("CurrentHealth", playerHealth);
     }
 
