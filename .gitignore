@@ -3,7 +3,6 @@ Obj/*
 UnityGenerated/*
 Library/*
 ExportedObj/*
-Builds/*
 Bundles/*
 *.svd
 *.userprefs
@@ -22,7 +21,6 @@ Bundles/*
 Icon?
 ehthumbs.db
 Thumbs.db
-*.apk
 *.rar
 *.zip
 *.unitypackage

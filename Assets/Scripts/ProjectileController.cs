@@ -13,7 +13,7 @@ public class ProjectileController : MonoBehaviour {
     private Transform player;
 
     //TODO: Move this property to enemy
-    public int pointsForKill;
+    //public int pointsForKill;
 
     public float rotationSpeed;
     public int damageToGive;
