@@ -8,11 +8,11 @@ public class EnemyHealthManager : MonoBehaviour {
     public GameObject deathEffect;
     public int pointsOnDeath;
 
-    private AudioSource _aus;
-    
+    public AudioClip acEnemy;
+
     // Use this for initialization
     void Start () {
-        _aus = GetComponent <AudioSource>();
+        
     }
 
 
@@ -29,7 +29,7 @@ public class EnemyHealthManager : MonoBehaviour {
 
     public void GiveDamage(int damageToGive) {
         enemyHealth -= damageToGive;
-        _aus.Play();
+        VoiceManager.me.PlayNoiseSound(acEnemy); ;
         CheckLive();
     }
 

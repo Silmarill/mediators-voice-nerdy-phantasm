@@ -6,7 +6,7 @@ public class CoinPickup : MonoBehaviour {
 
     public int pointsToAdd;
 
-    public AudioSource _aus;
+    public AudioClip acCoin;
 
     void OnTriggerEnter2D(Collider2D senpai) {
 
@@ -15,7 +15,7 @@ public class CoinPickup : MonoBehaviour {
         }
 
         ScoreManager.AddPoints(pointsToAdd);
-        _aus.Play();
+        VoiceManager.me.PlayNoiseSound(acCoin);
         Destroy(gameObject);
     }
 }

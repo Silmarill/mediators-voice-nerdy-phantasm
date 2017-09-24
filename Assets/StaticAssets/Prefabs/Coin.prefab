@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsToAdd: 100
-  _aus: {fileID: 0}
+  acCoin: {fileID: 8300000, guid: 791a9c1c3878cd84f9fe7c2d1c91d540, type: 3}
 --- !u!212 &212302391717268510
 SpriteRenderer:
   m_ObjectHideFlags: 1

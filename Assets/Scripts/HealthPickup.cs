@@ -1,15 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(AudioClip))]
 public class HealthPickup : MonoBehaviour {
 
     public int healthToAdd;
 
-    private AudioSource _aus;
+    public AudioClip acHealth;
 
     void Start() {
-        _aus = GetComponent <AudioSource>();
+        
     }
 
 
@@ -17,7 +17,7 @@ public class HealthPickup : MonoBehaviour {
 
         if (senpai.tag == "Player") {
            HealthManager.HurtPlayer(-healthToAdd);
-            _aus.Play();
+            VoiceManager.me.PlayNoiseSound(acHealth);
             Destroy(gameObject);
         }
 
