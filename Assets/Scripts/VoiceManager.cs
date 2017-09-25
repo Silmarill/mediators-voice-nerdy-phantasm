@@ -54,7 +54,7 @@ public class VoiceManager : MonoBehaviour
      * концертом.
      */
     void Start()
-    {
+    { 
         // Кэшируем все компоненты типа AudioSource 
         audios = GetComponents<AudioSource>();
 
@@ -262,7 +262,10 @@ public class VoiceManager : MonoBehaviour
             }
         }
         //если свободных нет - добавляем новый динамик
-        asNoiseSound.Add(new AudioSource());
+        AudioSource newAS = new AudioSource();
+        newAS.loop = false;
+        newAS.volume = 0.5f;
+        asNoiseSound.Add(newAS);
 
         // возвращаем последний динамик
         return (asNoiseSound.Count - 1);
@@ -274,9 +277,10 @@ public class VoiceManager : MonoBehaviour
      */
     public void PlayNoiseSound(AudioClip a)
     {
-        asNoiseSound[TakeFreeAus()].Stop();
-        asNoiseSound[TakeFreeAus()].clip = a;
-        asNoiseSound[TakeFreeAus()].Play();
+        int freeIndex = TakeFreeAus();
+        asNoiseSound[freeIndex].Stop();
+        asNoiseSound[freeIndex].clip = a;
+        asNoiseSound[freeIndex].Play();
     }
 
 }

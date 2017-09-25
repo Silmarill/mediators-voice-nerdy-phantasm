@@ -1,24 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(AudioClip))]
 public class HealthPickup : MonoBehaviour {
 
     public int healthToAdd;
 
     public AudioClip acHealth;
 
-    void Start() {
-        
-    }
-
-
     void OnTriggerEnter2D(Collider2D senpai) {
 
         if (senpai.tag == "Player") {
            HealthManager.HurtPlayer(-healthToAdd);
-            VoiceManager.me.PlayNoiseSound(acHealth);
-            Destroy(gameObject);
+           VoiceManager.me.PlayNoiseSound(acHealth);
+           Destroy(gameObject);
         }
 
 

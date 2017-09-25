@@ -10,13 +10,6 @@ public class EnemyHealthManager : MonoBehaviour {
 
     public AudioClip acEnemy;
 
-    // Use this for initialization
-    void Start () {
-        
-    }
-
-
-    
     void CheckLive () {
         if (enemyHealth <= 0) {
             Instantiate(deathEffect, transform.position, transform.rotation);
