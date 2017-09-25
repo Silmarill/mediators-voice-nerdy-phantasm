@@ -12,35 +12,38 @@ public class BossHealthManager : MonoBehaviour {
 
     public GameObject bossPrefab;
 
-            public float smallestSize;
+    public float smallestSize;
     private Transform _tr;
+    private Transform _trParent;
     public GameObject Wall;
 
 
 
     // Use this for initialization
-    void Start () {
-        _tr = GetComponent <Transform>();
+    void Start() {
+       _tr = GetComponent <Transform>();
+        _trParent = _tr.parent;
         _aus = GetComponent <AudioSource>();
     }
 
-
-    
     void CheckLive () {
         if (enemyHealth <= 0) {
+
+            Messenger.Broadcast("CheckChildren");
+
             Instantiate(deathEffect, _tr.position, _tr.rotation);
-
-
-
+            
             if (_tr.localScale.y > smallestSize) {
                 GameObject clone1 = Instantiate(bossPrefab,
                     new Vector3(_tr.position.x + 0.5f, _tr.position.y - _tr.position.y * 0.5f, _tr.position.z),
-                    _tr.rotation);
+                    _tr.rotation, _trParent);
 
 
                 GameObject clone2 = Instantiate(bossPrefab,
                     new Vector3(_tr.position.x - 0.5f, _tr.position.y - _tr.position.y * 0.5f, _tr.position.z),
-                    _tr.rotation);
+                    _tr.rotation,_trParent);
+
+
 
                 clone1.GetComponent <Transform>().localScale = _tr.localScale * 0.5f;
                 clone1.GetComponent <BossHealthManager>().enemyHealth = (int) (10.0f * clone1.GetComponent <Transform>().localScale.y);
@@ -48,8 +51,7 @@ public class BossHealthManager : MonoBehaviour {
                 clone2.GetComponent <Transform>().localScale = _tr.localScale * 0.5f;
                 clone2.GetComponent <BossHealthManager>().enemyHealth = (int) (10.0 * clone2.GetComponent <Transform>().localScale.y);
             } else {
-
-                ScoreManager.AddPoints(pointsOnDeath);
+                Messenger.Broadcast("AddPoints", pointsOnDeath);
             }
             gameObject.SetActive(false);
         }

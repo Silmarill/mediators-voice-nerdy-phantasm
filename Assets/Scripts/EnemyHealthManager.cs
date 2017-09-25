@@ -10,15 +10,14 @@ public class EnemyHealthManager : MonoBehaviour {
 
     public AudioClip acEnemy;
 
+
     void CheckLive () {
         if (enemyHealth <= 0) {
             Instantiate(deathEffect, transform.position, transform.rotation);
-            ScoreManager.AddPoints(pointsOnDeath);
+            Messenger.Broadcast("AddPoints",pointsOnDeath);
             Destroy(gameObject);
         }
     }
-
-
 
     public void GiveDamage(int damageToGive) {
         enemyHealth -= damageToGive;

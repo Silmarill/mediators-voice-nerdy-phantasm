@@ -9,7 +9,7 @@ public class TouchControls : MonoBehaviour {
     private PauseMenu pausMenu;
     // Use this for initialization
     void Start () {
-         #if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
+         #if UNITY_STANDALONE || UNITY_WEBPLAYER 
         gameObject.SetActive(false);
         return;
         #endif
@@ -19,6 +19,7 @@ public class TouchControls : MonoBehaviour {
     }
 
     public void UpArrow() {
+          Messenger.Broadcast("CheckChildren");
      _p.Climb(1);
     }
 

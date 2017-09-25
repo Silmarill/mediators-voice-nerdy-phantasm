@@ -36,10 +36,6 @@ public class CameraController : MonoBehaviour {
                                         _trPlayer.position.y + yOffset,
                                         _tr.position.z);
 
-    
-            
-
-
 
         }
     }

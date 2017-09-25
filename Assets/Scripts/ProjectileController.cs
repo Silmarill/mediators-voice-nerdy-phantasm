@@ -38,15 +38,13 @@ public class ProjectileController : MonoBehaviour {
     
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Enemy") {
-            //Instantiate(deathEffect, other.transform.position, other.transform.rotation);
-            //Destroy(other.gameObject);
-            // ScoreManager.AddPoints(pointsForKill);
-            other.GetComponent<EnemyHealthManager>().GiveDamage(damageToGive);
+            other.GetComponent <EnemyHealthManager>().GiveDamage(damageToGive);
         }
 
         if (other.tag == "Boss") {
             other.GetComponent<BossHealthManager>().GiveDamage(damageToGive);
         }
+
         Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(gameObject);
     }
