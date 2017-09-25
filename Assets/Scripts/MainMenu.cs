@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using SimpleJSON;
+using System.IO;
 
 public class MainMenu : MonoBehaviour {
 
@@ -17,19 +19,40 @@ public class MainMenu : MonoBehaviour {
     public string startLevel;
     public string levelSelect;
 
-  
+    private String json;
+    private JSONNode jsonNode;
+    private TextAsset jsonFile;
+    private readonly string FILE_NAME = "settings";
+    private string playerName;
+    private int playerLives;
+    private int score;
+    private int maxHealth;
+    private int currentHealth;
 
     private void SetupGame() {
-         //TODO: get from JSON
+        jsonFile = (TextAsset)Resources.Load(FILE_NAME);
+          
+        string theJsonText = jsonFile.text;      
+        jsonNode = JSON.Parse(theJsonText);
+    
+
+        var playerStatus = jsonNode["Player"];
+        playerName = playerStatus["PlayerName"];
+        playerLives = playerStatus["PlayerLives"].AsInt;
+        score = playerStatus["Score"].AsInt;           
+        maxHealth = playerStatus["MaxHealth"].AsInt;
+        currentHealth = playerStatus["CurrentHealth"].AsInt;
+
+
         PlayerPrefs.SetInt(Level1Tag, 1);
 
-        PlayerPrefs.SetInt("PlayerLives", playerStartLives);
-        PlayerPrefs.SetInt("Score", playerStartScore);
+        PlayerPrefs.SetInt("PlayerLives", playerLives);
+        PlayerPrefs.SetInt("Score", score);
 
-        PlayerPrefs.SetInt("MaxHealth", playerStartHealth);
-        PlayerPrefs.SetInt("CurrentHealth", playerCurrentHealth);
+        PlayerPrefs.SetInt("MaxHealth", maxHealth);
+        PlayerPrefs.SetInt("CurrentHealth", currentHealth);
 
-        if (!PlayerPrefs.HasKey("LevelIndexPosStore")) {
+        if (!(jsonNode["LevelIndexPosStore"] != null)) {
             PlayerPrefs.SetInt("LevelIndexPosStore", 0);
         }
 
@@ -37,7 +60,7 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void NewGame() {
-        SetupGame();
+      SetupGame();
       SceneManager.LoadScene(startLevel);
     }
 

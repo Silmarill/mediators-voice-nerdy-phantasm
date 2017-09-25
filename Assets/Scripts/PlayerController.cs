@@ -32,7 +32,8 @@ public class PlayerController : MonoBehaviour {
     public float shotDelay;
     private float shotDelayCounter;
 
-    private AudioSource _aus;
+    // AudioClip with a jumping Sound
+    public AudioClip acJump;
 
     public float knockback;
     public float knockbackLength;
@@ -48,7 +49,6 @@ public class PlayerController : MonoBehaviour {
 
 
     void Start() {
-        _aus = GetComponent <AudioSource>();
         _r2d = GetComponent <Rigidbody2D>();
         _ator = GetComponent <Animator>();
         _tr = GetComponent <Transform>();
@@ -179,7 +179,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Jump() {
-        _aus.Play();
+        // Вызов метода PlayNoiseSound для проигрывания звука прыжка
+        VoiceManager.me.PlayNoiseSound(acJump);
 
         if (isGrounded) {
             _r2d.velocity = new Vector2(_r2d.velocity.x, jumpHeight);

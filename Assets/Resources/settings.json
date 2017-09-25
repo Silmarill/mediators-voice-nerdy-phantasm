@@ -1,0 +1,11 @@
+{
+    "Player":{
+                "PlayerName":"Grill",
+                "PlayerLives":6,
+                "Score":0,
+                "MaxHealth":7,
+                "CurrentHealth":7
+             },
+			 LevelIndexPosStore : {}
+			 }
+ 
