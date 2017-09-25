@@ -10,8 +10,13 @@ public class ScoreManager : MonoBehaviour {
 
 
     void Start() {
+        Messenger.AddListener<int>("AddPoints",AddPoints);
         text = GetComponent <Text>();
         Reset();
+    }
+
+    void Destroy() {
+        Messenger.RemoveListener<int>("AddPoints",AddPoints);
     }
 
 
@@ -23,18 +28,14 @@ public class ScoreManager : MonoBehaviour {
 
         text.text = score.ToString();
     }
-
     
 
-    public static void AddPoints(int pointsToAdd) {
+    public void AddPoints(int pointsToAdd) {
         score += pointsToAdd;
         PlayerPrefs.SetInt("Score", score);
     }
-
-
-
-
-    public static void Reset() {
+    
+    public void Reset() {
         score = PlayerPrefs.GetInt("Score");
     }
 

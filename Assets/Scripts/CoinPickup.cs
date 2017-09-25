@@ -14,7 +14,7 @@ public class CoinPickup : MonoBehaviour {
             return;
         }
 
-        ScoreManager.AddPoints(pointsToAdd);
+        Messenger.Broadcast("AddPoints", pointsToAdd);
         VoiceManager.me.PlayNoiseSound(acCoin);
         Destroy(gameObject);
     }

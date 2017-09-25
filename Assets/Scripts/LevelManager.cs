@@ -48,7 +48,8 @@ public class LevelManager : MonoBehaviour {
         camcon.isFollowin = false;
 
         //TODO: Перенести в Hazards
-        ScoreManager.AddPoints(-pointPenaltyOnDeath);
+        Messenger.Broadcast("AddPoints",-pointPenaltyOnDeath);
+        
 
         yield return new WaitForSeconds(respawnDelay);
         player.knockbackCount = 0;
