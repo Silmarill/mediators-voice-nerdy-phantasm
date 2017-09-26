@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BossWall : MonoBehaviour {
-
+    
 
     void Start() {
         Messenger.AddListener("BossDead", DestroyWall);
@@ -14,7 +14,7 @@ public class BossWall : MonoBehaviour {
     }
 
     private void DestroyWall() {
-        Debug.Log("BossDead here");
+        //Debug.Log("BossDead here");
         Destroy(gameObject);
 
     }
