@@ -13,7 +13,7 @@ public class EnemyHealthManager : MonoBehaviour {
 
     void CheckLive () {
         if (enemyHealth <= 0) {
-            Instantiate(deathEffect, transform.position, transform.rotation);
+            deathEffect.Spawn(transform.position, transform.rotation);
             Messenger.Broadcast("AddPoints",pointsOnDeath);
             Destroy(gameObject);
         }

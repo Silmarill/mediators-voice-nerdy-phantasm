@@ -262,7 +262,7 @@ public class VoiceManager : MonoBehaviour
             }
         }
         //если свободных нет - добавляем новый динамик
-        AudioSource newAS = new AudioSource();
+        AudioSource newAS = gameObject.AddComponent <AudioSource>();
         newAS.loop = false;
         newAS.volume = 0.5f;
         asNoiseSound.Add(newAS);
