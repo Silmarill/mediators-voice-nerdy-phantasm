@@ -8,7 +8,7 @@ public class BossHealthManager : MonoBehaviour {
     public GameObject deathEffect;
     public int pointsOnDeath;
 
-    private AudioSource _aus;
+    public AudioClip acHurt;
 
     public GameObject bossPrefab;
 
@@ -23,7 +23,7 @@ public class BossHealthManager : MonoBehaviour {
     void Start() {
        _tr = GetComponent <Transform>();
         _trParent = _tr.parent;
-        _aus = GetComponent <AudioSource>();
+       
     }
 
     void CheckLive () {
@@ -57,11 +57,12 @@ public class BossHealthManager : MonoBehaviour {
         }
     }
 
-
+    
+   
 
     public void GiveDamage(int damageToGive) {
         enemyHealth -= damageToGive;
-        _aus.Play();
+        VoiceManager.me.PlayNoiseSound(acHurt);
         CheckLive();
     }
 }

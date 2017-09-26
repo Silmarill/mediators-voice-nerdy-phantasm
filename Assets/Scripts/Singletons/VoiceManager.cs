@@ -37,12 +37,20 @@ public class VoiceManager : MonoBehaviour
         if (me != null && me != this)
         {
             // если уже есть, но уничтожаем конфликтную копию
+            Messenger.RemoveListener("GameIsStopped", stopAllSound);
+            Messenger.RemoveListener("GameIsResumed", startAllSound);
             Destroy(gameObject);
+
         }
         else
         {
             // Сохраняем ссылку на Одиночку
             me = this;
+
+            //Добавление слушателей на выключение динамиков во время паузы и включение во отжатия паузы
+            Messenger.AddListener("GameIsStopped", stopAllSound);
+            Messenger.AddListener("GameIsResumed", startAllSound);
+
             // Объект не будет уничтожаться перед загрузкой следующей сцены
             GameObject.DontDestroyOnLoad(this.gameObject);
         }
@@ -54,14 +62,16 @@ public class VoiceManager : MonoBehaviour
      * концертом.
      */
     void Start()
-    { 
+    {
         // Кэшируем все компоненты типа AudioSource 
         audios = GetComponents<AudioSource>();
 
         // 1 динамик - для музыкы
         asMusic = audios[0];
+
         // 2 - БОНЬКающим кнопкам
         asUISound = audios[1];
+
         // 3-5 - остальным звукам
         for (int i = 2; i < 5; ++i)
         {
@@ -265,6 +275,7 @@ public class VoiceManager : MonoBehaviour
         AudioSource newAS = gameObject.AddComponent <AudioSource>();
         newAS.loop = false;
         newAS.volume = 0.5f;
+        newAS.playOnAwake = false;
         asNoiseSound.Add(newAS);
 
         // возвращаем последний динамик
@@ -281,6 +292,25 @@ public class VoiceManager : MonoBehaviour
         asNoiseSound[freeIndex].Stop();
         asNoiseSound[freeIndex].clip = a;
         asNoiseSound[freeIndex].Play();
+    }
+
+
+    //Слушатель перенаправляет в данный метод для паузы основных динамиков(шум не включен)
+    private void stopAllSound() {
+        for (int i = 0; i < audios.Length; i++) {
+            if (audios[i].isActiveAndEnabled) {
+                audios[i].Pause();
+            }
+        }
+    }
+
+    //Слушатель перенаправляет в данный метод для возобновления проигрывания основных динамиков(шум не включен)
+    private void startAllSound()
+    {
+        for (int i = 0; i < audios.Length; i++)
+        {
+              audios[i].UnPause();
+        }
     }
 
 }

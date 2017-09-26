@@ -17,15 +17,35 @@ public class EnemyPatrol : MonoBehaviour {
 
     private Rigidbody2D _r2d;
     private Transform _tr;
+    private Animator _ator;
 
+    private bool isPaused;
 
+    void pauseStatus(bool isPaused) {
+        this.isPaused = isPaused;
+        if (isPaused)
+        {
+            _ator.enabled = false;
+            _ator.speed = 0.0f;
+            _r2d.velocity = new Vector2(0, 0);
+        }
+        else {
+            _ator.enabled = true;
+            _ator.speed = 1.0f;
+        }
+    }
     void Start() {
+        Messenger.AddListener<bool>("PauseStatus", pauseStatus);
+
+        _ator = GetComponent<Animator>();
         _r2d = GetComponent <Rigidbody2D>();
         _tr = GetComponent <Transform>();
+        
     }
-
+   
 
     void Update () {
+        if (PauseMenu.isPaused) return;
         isWallHitted = Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, whatIsWall);
 
         atEdge = Physics2D.OverlapCircle(edgeCheck.position, wallCheckRadius, whatIsWall);
@@ -46,4 +66,5 @@ public class EnemyPatrol : MonoBehaviour {
 
 
     }
+  
 }

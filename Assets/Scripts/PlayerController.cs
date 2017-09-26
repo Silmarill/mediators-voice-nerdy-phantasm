@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
     private Animator _ator;
     private Rigidbody2D _r2d;
     private Transform _tr;
+   
 
     public Transform firePoint;
     public GameObject projectile;
@@ -45,17 +46,32 @@ public class PlayerController : MonoBehaviour {
     private float climbVelosity;
     public float climbSpeed;
     private float gravityStore;
+    private bool isPaused;
 
     public static PlayerController me { get; private set; }
-
-
+    
+    void pauseStatus(bool isPaused) {
+        this.isPaused = isPaused;
+        if (isPaused)
+        {
+            // дейтсвие на нажатие паузы
+            _ator.speed = 0.0f;
+            _r2d.velocity = new Vector2(0, 0);
+        }
+        else {
+            // действие на отжатие паузы 
+        }
+    }
 
     void Start() {
+        Messenger.AddListener<bool>("PauseStatus", pauseStatus);
         me = this;
         _r2d = GetComponent <Rigidbody2D>();
         _ator = GetComponent <Animator>();
         _tr = GetComponent <Transform>();
+        
         gravityStore = _r2d.gravityScale;
+
     }
 
 
@@ -67,6 +83,7 @@ public class PlayerController : MonoBehaviour {
 
 
     void Update() {
+        if (isPaused) return;
 
         if (isGrounded) {
             isDoubleJumped = false;
