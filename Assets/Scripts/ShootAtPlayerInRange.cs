@@ -30,17 +30,21 @@ public class ShootAtPlayerInRange : MonoBehaviour {
 
         shootsCounter -= Time.deltaTime;
         if (shootsCounter < 0) {
-            
+          
             //if enemy  move RIGHT, faced to player and in range
             if (_tr.localScale.x < 0 && player.position.x > _tr.position.x &&
                 player.position.x < _tr.position.x + playerRange) {
-                Instantiate(enemyStar, launchPoint.position, launchPoint.rotation);
+                enemyStar.Spawn(launchPoint.position, launchPoint.rotation);
+                //== gameObject.SetActive(true);
+
+                //Instantiate(enemyStar,);
             }
 
 
             if (_tr.localScale.x > 0 && player.position.x < _tr.position.x &&
                 player.position.x > _tr.position.x - playerRange) {
-                Instantiate(enemyStar, launchPoint.position, launchPoint.rotation);
+                //Instantiate(enemyStar, launchPoint.position, launchPoint.rotation);
+                enemyStar.Spawn( launchPoint.position, launchPoint.rotation);
             }
 
             shootsCounter = waitBetweenShoots;

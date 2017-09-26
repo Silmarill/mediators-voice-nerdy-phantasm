@@ -7,19 +7,33 @@ public class EnemyProjectileController : MonoBehaviour {
     
     public int damageToGive;
     public float speed;
+    private float speedOnStart;
     public float rotationSpeed;
     public GameObject impactEffect;
 
     private Transform player;
     private Rigidbody2D _r2d;
-    
-    
-    // Use this for initialization
-    void Start() {
-        _r2d = GetComponent <Rigidbody2D>();
-        player = FindObjectOfType <PlayerController>().GetComponent<Transform>();
 
-        if (player.position.x < GetComponent<Transform>().position.x) {
+    private Transform _tr;
+
+    void OnEnable() {
+        speedOnStart = speed;
+
+        if (_tr == null) {
+            _tr = GetComponent <Transform>();
+        }
+
+
+        if (_r2d == null) {
+            _r2d = GetComponent <Rigidbody2D>();
+        }
+
+        if (player == null) {
+            player = PlayerController.me.gameObject.GetComponent <Transform>();
+        }
+
+
+        if (player.position.x < _tr.position.x) {
             speed = -speed;
             rotationSpeed = -rotationSpeed;
         }
@@ -29,6 +43,19 @@ public class EnemyProjectileController : MonoBehaviour {
         _r2d.angularVelocity = rotationSpeed;
     }
 
+
+
+    // Use this for initialization
+    void Start() {
+        _r2d = GetComponent <Rigidbody2D>();
+        player = PlayerController.me.gameObject.GetComponent<Transform>();
+        _tr = GetComponent <Transform>();
+    }
+
+
+     void OnDisable() {
+        speed = speedOnStart;
+    }
     
 
     
@@ -36,8 +63,7 @@ public class EnemyProjectileController : MonoBehaviour {
         if (other.tag == "Player") {
            HealthManager.HurtPlayer(damageToGive);
         }
-
-        Instantiate(impactEffect, transform.position, transform.rotation);
-        Destroy(gameObject);
+        impactEffect.Spawn(transform.position, transform.rotation);
+        gameObject.Recycle();
     }
 }

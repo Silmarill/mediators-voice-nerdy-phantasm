@@ -31,7 +31,7 @@ public class BossHealthManager : MonoBehaviour {
 
             Messenger.Broadcast("CheckChildren");
 
-            Instantiate(deathEffect, _tr.position, _tr.rotation);
+            deathEffect.Spawn(_tr.position, _tr.rotation);
             
             if (_tr.localScale.y > smallestSize) {
                 GameObject clone1 = Instantiate(bossPrefab,

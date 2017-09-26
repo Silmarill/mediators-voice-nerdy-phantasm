@@ -46,9 +46,12 @@ public class PlayerController : MonoBehaviour {
     public float climbSpeed;
     private float gravityStore;
 
+    public static PlayerController me { get; private set; }
+
 
 
     void Start() {
+        me = this;
         _r2d = GetComponent <Rigidbody2D>();
         _ator = GetComponent <Animator>();
         _tr = GetComponent <Transform>();
@@ -118,13 +121,11 @@ public class PlayerController : MonoBehaviour {
         }
 
       
-         #if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
+        #if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
         if (Input.GetButton("Fire1")) {
             shotDelayCounter -= Time.deltaTime;
             if (shotDelayCounter <= 0) {
                 shotDelayCounter = shotDelay;
-                //TODO: Replace with pool
-                //Instantiate(projectile, firePoint.position, firePoint.rotation);
                 Fire();
             }
         }
@@ -167,7 +168,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Fire() {
-        Instantiate(projectile, firePoint.position, firePoint.rotation);
+        projectile.Spawn(firePoint.position, firePoint.rotation);
     }
 
     public void Sword() {

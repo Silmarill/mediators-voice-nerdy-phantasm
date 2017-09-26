@@ -5,12 +5,12 @@ using UnityEngine;
 public class ProjectileController : MonoBehaviour {
 
     public float speed;
+    private float speedOnStart;
     public GameObject deathEffect;
     public GameObject impactEffect;
 
-    private Rigidbody2D _r2d;
-
-    private Transform player;
+    public Rigidbody2D _r2d;
+    public Transform player;
 
     //TODO: Move this property to enemy
     //public int pointsForKill;
@@ -18,10 +18,19 @@ public class ProjectileController : MonoBehaviour {
     public float rotationSpeed;
     public int damageToGive;
 
+
+
     // Use this for initialization
-    void Start() {
-        _r2d = GetComponent <Rigidbody2D>();
-        player = FindObjectOfType <PlayerController>().GetComponent<Transform>();
+    void OnEnable() {
+        speedOnStart = speed;
+
+        if (_r2d == null) {
+            _r2d = GetComponent <Rigidbody2D>();
+        }
+
+        if (player == null) {
+            player = PlayerController.me.gameObject.GetComponent <Transform>();
+        }
 
         if (player.localScale.x < 0) {
             rotationSpeed = -rotationSpeed;
@@ -33,9 +42,21 @@ public class ProjectileController : MonoBehaviour {
         _r2d.angularVelocity = rotationSpeed;
     }
 
-    
 
-    
+
+    void OnDisable() {
+        speed = speedOnStart;
+    }
+
+
+
+    void Start() {
+        _r2d = GetComponent <Rigidbody2D>();
+        player = PlayerController.me.gameObject.GetComponent <Transform>();
+    }
+
+
+
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Enemy") {
             other.GetComponent <EnemyHealthManager>().GiveDamage(damageToGive);
@@ -45,8 +66,8 @@ public class ProjectileController : MonoBehaviour {
             other.GetComponent<BossHealthManager>().GiveDamage(damageToGive);
         }
 
-        Instantiate(impactEffect, transform.position, transform.rotation);
-        Destroy(gameObject);
+        impactEffect.Spawn(transform.position, transform.rotation);
+        gameObject.Recycle();
     }
 
 }

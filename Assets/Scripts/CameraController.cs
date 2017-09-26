@@ -21,12 +21,9 @@ public class CameraController : MonoBehaviour {
         isFollowin = true;
         _tr = GetComponent <Transform>();
         _trPlayer = player.GetComponent <Transform>();
-
-       
-
-
     }
     
+
     //TODO: Make some sweet lerp;   
     void Update () {
         if (isFollowin &&  _trPlayer!=null) {

@@ -44,11 +44,7 @@ public class FlyerEnemyMove : MonoBehaviour {
                 _tr.position = Vector3.MoveTowards(_tr.position, thePlayer.position, moveSpeed * Time.deltaTime);
                 return;
             }
-
-
         }
-
-
 
         // 2 player look right and LEFT from enemy
         if ((thePlayer.position.x < _tr.position.x && thePlayer.localScale.x < 0) ||

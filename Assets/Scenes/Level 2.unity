@@ -1010,7 +1010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsToAdd: 100
-  _aus: {fileID: 1609933006}
+  acCoin: {fileID: 0}
 --- !u!58 &237469314
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1111,7 +1111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsToAdd: 100
-  _aus: {fileID: 1609933006}
+  acCoin: {fileID: 0}
 --- !u!58 &255031831
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2088,7 +2088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsToAdd: 100
-  _aus: {fileID: 1609933006}
+  acCoin: {fileID: 0}
 --- !u!58 &533091745
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2480,7 +2480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsToAdd: 100
-  _aus: {fileID: 1609933006}
+  acCoin: {fileID: 0}
 --- !u!58 &593538528
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2678,7 +2678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsToAdd: 100
-  _aus: {fileID: 1609933006}
+  acCoin: {fileID: 0}
 --- !u!58 &598772273
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2973,7 +2973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsToAdd: 100
-  _aus: {fileID: 1609933006}
+  acCoin: {fileID: 0}
 --- !u!58 &694254747
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -7821,6 +7821,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29bd4f76558ae264aa93efc8d1f97751, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1658589038
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4674274417177640, guid: fdd96395c9f5af34db18cd6e4a5e2d56, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.627915
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674274417177640, guid: fdd96395c9f5af34db18cd6e4a5e2d56, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.22931187
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674274417177640, guid: fdd96395c9f5af34db18cd6e4a5e2d56, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674274417177640, guid: fdd96395c9f5af34db18cd6e4a5e2d56, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674274417177640, guid: fdd96395c9f5af34db18cd6e4a5e2d56, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674274417177640, guid: fdd96395c9f5af34db18cd6e4a5e2d56, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674274417177640, guid: fdd96395c9f5af34db18cd6e4a5e2d56, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674274417177640, guid: fdd96395c9f5af34db18cd6e4a5e2d56, type: 2}
+      propertyPath: m_RootOrder
+      value: 24
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: fdd96395c9f5af34db18cd6e4a5e2d56, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1752183664
 GameObject:
   m_ObjectHideFlags: 0
@@ -9870,7 +9912,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsToAdd: 100
-  _aus: {fileID: 1609933006}
+  acCoin: {fileID: 0}
 --- !u!58 &2129750627
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -6,23 +6,24 @@ public class DestroyFinishedParticle : MonoBehaviour {
 
     private ParticleSystem  _ps;
 
-    
+   
+
     void Start () {
         _ps = GetComponent <ParticleSystem>();
     }
     
     
+
     void Update () {
         if (_ps.isPlaying) {
             return;
         }
-        //TODO: Убрать алокацию
-        Destroy(this.gameObject);
+        gameObject.Recycle();
     }
 
 
 
     void OnBecameInvisible() {
-        Destroy(this.gameObject);
+         gameObject.Recycle();
     }
 }

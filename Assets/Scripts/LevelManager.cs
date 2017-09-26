@@ -39,9 +39,9 @@ public class LevelManager : MonoBehaviour {
 
 
     public IEnumerator RespawnPlayerCoorutine() {
-        Instantiate(deathParticle, player.transform.position, Quaternion.identity);
+        deathParticle.Spawn(player.transform.position, Quaternion.identity);
 
-        //TODO: Подумать, можно ли просто вырубить его через SetActive
+
         player.enabled = false;
         player.GetComponent <SpriteRenderer>().enabled = false;
         _r2dPlayer.velocity = Vector2.zero;
@@ -58,8 +58,7 @@ public class LevelManager : MonoBehaviour {
         player.enabled = true;
         player.GetComponent <SpriteRenderer>().enabled = true;
 
-        //TODO: Нужно переделать инстанцирование на смену позиции объекта+запуск партикл-эффекта (Play)
-        Instantiate(respawnParticle, currentCheckpoint.transform.position, Quaternion.identity);
+        respawnParticle.Spawn(currentCheckpoint.transform.position, Quaternion.identity);
     }
 
 
