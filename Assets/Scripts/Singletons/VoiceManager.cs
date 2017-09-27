@@ -45,7 +45,7 @@ public class VoiceManager : MonoBehaviour
             me = this;
 
             //Добавление слушателей на выключение динамиков во время паузы и включение во отжатия паузы
-
+            
             Messenger.AddListener<bool>("PauseStatus", pauseStatus);
 
             // Объект не будет уничтожаться перед загрузкой следующей сцены

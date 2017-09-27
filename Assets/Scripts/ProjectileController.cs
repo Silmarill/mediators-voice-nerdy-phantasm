@@ -18,7 +18,7 @@ public class ProjectileController : MonoBehaviour {
     public float rotationSpeed;
     public int damageToGive;
 
-
+    private bool isPaused;
 
     // Use this for initialization
     void OnEnable() {
@@ -42,7 +42,29 @@ public class ProjectileController : MonoBehaviour {
         _r2d.angularVelocity = rotationSpeed;
     }
 
+    // Получение от слушателя информации о паузе, остановка движения буллетсов
+    void pauseStatus(bool isPaused)
+    {
+        this.isPaused = isPaused;
+        if (isPaused)
+        {
+            _r2d.velocity = new Vector2(0, _r2d.velocity.y);
+            _r2d.angularVelocity = 0.0f;
+        }
+        // В случае отжатия паузы всем буллетсам возвращаются их параметры для перемещения
+        else
+        {
+            _r2d.velocity = new Vector2(speed, _r2d.velocity.y);
+            _r2d.angularVelocity = rotationSpeed;
+        }
 
+    }
+
+    //При разрушении объекта убираем слушатель.
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener<bool>("PauseStatus", pauseStatus);
+    }
 
     void OnDisable() {
         speed = speedOnStart;
@@ -51,6 +73,9 @@ public class ProjectileController : MonoBehaviour {
 
 
     void Start() {
+        // Добавление слушателя из-за нужды в переопределении логики
+        Messenger.AddListener<bool>("PauseStatus", pauseStatus);
+
         _r2d = GetComponent <Rigidbody2D>();
         player = PlayerController.me.gameObject.GetComponent <Transform>();
     }
