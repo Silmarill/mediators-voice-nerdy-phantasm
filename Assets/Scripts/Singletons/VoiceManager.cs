@@ -17,7 +17,8 @@ public class VoiceManager : MonoBehaviour
     List<AudioSource> asNoiseSound = new List<AudioSource>();
     // Локальная переменная, необходимая для того чтобы собрать все AudioSource на объекте
     AudioSource[] audios;
-   
+
+    private bool ispaused;
 
 
     /// Открытое свойство Одиночки для доступа к полям и методам из других классов
@@ -36,11 +37,8 @@ public class VoiceManager : MonoBehaviour
         // Убедимся, что нет других экземпляров этого класса
         if (me != null && me != this)
         {
-            // если уже есть, но уничтожаем конфликтную копию
-            Messenger.RemoveListener("GameIsStopped", stopAllSound);
-            Messenger.RemoveListener("GameIsResumed", startAllSound);
-            Destroy(gameObject);
 
+            Destroy(gameObject);
         }
         else
         {
@@ -48,11 +46,39 @@ public class VoiceManager : MonoBehaviour
             me = this;
 
             //Добавление слушателей на выключение динамиков во время паузы и включение во отжатия паузы
-            Messenger.AddListener("GameIsStopped", stopAllSound);
-            Messenger.AddListener("GameIsResumed", startAllSound);
+            Messenger.AddListener<bool>("PauseStatus", pauseStatus);
+
 
             // Объект не будет уничтожаться перед загрузкой следующей сцены
             GameObject.DontDestroyOnLoad(this.gameObject);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        // если уже есть, но уничтожаем конфликтную копию
+        Messenger.RemoveListener<bool>("PauseStatus", pauseStatus);
+
+
+    }
+
+    void pauseStatus(bool isPaused)
+    {
+        if (isPaused)
+        {
+            for (int i = 0; i < audios.Length; i++)
+            {
+                if (audios[i].isActiveAndEnabled)
+                {
+                    audios[i].Pause();
+                }
+            }
+        }
+        else {
+            for (int i = 0; i < audios.Length; i++)
+            {
+                audios[i].UnPause();
+            }
         }
     }
 
@@ -102,8 +128,8 @@ public class VoiceManager : MonoBehaviour
         asUISound.Stop();
         asUISound.clip = a;
         asUISound.Play();
-      
-     
+
+
     }
 
     /// Запустить воспроизведение музыки
@@ -116,11 +142,12 @@ public class VoiceManager : MonoBehaviour
 
     public void MusicPlay(AudioClip a)
     {
-    /**
-        * Проверка, играет ли динамик для бекграунд музыки
-        * Если динамик используется(а он 100% используется если запущена музыка со старта) то переопределить клип.
-        */
-        if (asMusic.isPlaying) {
+        /**
+            * Проверка, играет ли динамик для бекграунд музыки
+            * Если динамик используется(а он 100% используется если запущена музыка со старта) то переопределить клип.
+            */
+        if (asMusic.isPlaying)
+        {
 
             // Остановка пред песни
             asMusic.Stop();
@@ -135,7 +162,8 @@ public class VoiceManager : MonoBehaviour
             asMusic.Play();
         }
 
-        else {
+        else
+        {
 
             // Назначить мелодию
             asMusic.clip = a;
@@ -147,7 +175,7 @@ public class VoiceManager : MonoBehaviour
             asMusic.Play();
 
         }
-        
+
     }
 
 
@@ -168,7 +196,7 @@ public class VoiceManager : MonoBehaviour
     /**
      * Метод останавливает воспроизведение музыки. 
      */
-        public void MusicOFF()
+    public void MusicOFF()
     {
         // Сохраняем в PlayerPrefs - мы же не хотим заставлять игрока выключать музыку 
         // каждый раз при входе в игру 
@@ -208,7 +236,7 @@ public class VoiceManager : MonoBehaviour
         for (int i = 0; i < asNoiseSound.Count; ++i)
         {
             asNoiseSound[i].volume = 0.0f;
-           
+
         }
     }
 
@@ -224,7 +252,7 @@ public class VoiceManager : MonoBehaviour
         for (int i = 0; i < asNoiseSound.Count; ++i)
         {
             asNoiseSound[i].volume = 1.0f;
-            
+
         }
     }
 
@@ -272,7 +300,7 @@ public class VoiceManager : MonoBehaviour
             }
         }
         //если свободных нет - добавляем новый динамик
-        AudioSource newAS = gameObject.AddComponent <AudioSource>();
+        AudioSource newAS = gameObject.AddComponent<AudioSource>();
         newAS.loop = false;
         newAS.volume = 0.5f;
         newAS.playOnAwake = false;
@@ -296,21 +324,10 @@ public class VoiceManager : MonoBehaviour
 
 
     //Слушатель перенаправляет в данный метод для паузы основных динамиков(шум не включен)
-    private void stopAllSound() {
-        for (int i = 0; i < audios.Length; i++) {
-            if (audios[i].isActiveAndEnabled) {
-                audios[i].Pause();
-            }
-        }
+    private void stopAllSound()
+    {
+
     }
 
     //Слушатель перенаправляет в данный метод для возобновления проигрывания основных динамиков(шум не включен)
-    private void startAllSound()
-    {
-        for (int i = 0; i < audios.Length; i++)
-        {
-              audios[i].UnPause();
-        }
-    }
-
 }

@@ -35,17 +35,22 @@ public class EnemyPatrol : MonoBehaviour {
         }
     }
     void Start() {
-        Messenger.AddListener<bool>("PauseStatus", pauseStatus);
 
+        Messenger.AddListener<bool>("PauseStatus", pauseStatus);
+       
         _ator = GetComponent<Animator>();
         _r2d = GetComponent <Rigidbody2D>();
         _tr = GetComponent <Transform>();
         
     }
-   
+
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener<bool>("PauseStatus", pauseStatus);
+    }
 
     void Update () {
-        if (PauseMenu.isPaused) return;
+        if (isPaused) return;
         isWallHitted = Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, whatIsWall);
 
         atEdge = Physics2D.OverlapCircle(edgeCheck.position, wallCheckRadius, whatIsWall);
