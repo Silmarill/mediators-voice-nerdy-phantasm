@@ -59,6 +59,8 @@ public class VoiceManager : MonoBehaviour
         Messenger.RemoveListener<bool>("PauseStatus", pauseStatus);
     }
 
+
+    // Listener передает состояние паузы.И далее паузит бекграунд музыку,и другие стопает
     void pauseStatus(bool isPaused)
     {
         if (isPaused)
