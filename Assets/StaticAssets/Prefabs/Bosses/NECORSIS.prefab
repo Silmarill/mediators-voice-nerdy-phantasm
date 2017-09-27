@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 114404941855870704}
   - component: {fileID: 114985631968091746}
   - component: {fileID: 114583657582988278}
+  - component: {fileID: 114664346133424482}
   m_Layer: 13
   m_Name: NECORSIS
   m_TagString: Boss
@@ -246,6 +247,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   edgeCheck: {fileID: 4082962978986602}
+--- !u!114 &114664346133424482
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1645378183532172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0925e5317cc2424dacb027ebd68ac13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114873856816448518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -274,6 +286,7 @@ MonoBehaviour:
   deathEffect: {fileID: 1271020800339306, guid: 5be8c1d23c1874b46860dcbd28dad2d9,
     type: 2}
   pointsOnDeath: 1000
+  acHurt: {fileID: 0}
   bossPrefab: {fileID: 1645378183532172}
   smallestSize: 0.25
   Wall: {fileID: 0}

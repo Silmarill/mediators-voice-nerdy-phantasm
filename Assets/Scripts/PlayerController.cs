@@ -50,21 +50,9 @@ public class PlayerController : MonoBehaviour {
 
     public static PlayerController me { get; private set; }
     
-    void pauseStatus(bool isPaused) {
-        this.isPaused = isPaused;
-        if (isPaused)
-        {
-            // дейтсвие на нажатие паузы
-            _ator.speed = 0.0f;
-            _r2d.velocity = new Vector2(0, 0);
-        }
-        else {
-            // действие на отжатие паузы 
-        }
-    }
 
     void Start() {
-        Messenger.AddListener<bool>("PauseStatus", pauseStatus);
+        
         me = this;
         _r2d = GetComponent <Rigidbody2D>();
         _ator = GetComponent <Animator>();
@@ -74,22 +62,13 @@ public class PlayerController : MonoBehaviour {
 
     }
 
-
-
-    void FixedUpdate() {
+   void FixedUpdate() {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
     }
-
-
-
     void Update() {
-        if (isPaused) return;
-
         if (isGrounded) {
             isDoubleJumped = false;
         }
-
-       
         _ator.SetBool("isGrounded", isGrounded);
          #if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
 

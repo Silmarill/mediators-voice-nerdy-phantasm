@@ -15,8 +15,6 @@ public class EnemyHealthManager : MonoBehaviour {
         if (enemyHealth <= 0) {
             deathEffect.Spawn(transform.position, transform.rotation);
             Messenger.Broadcast("AddPoints",pointsOnDeath);
-            
-            
             Destroy(gameObject);
         }
     }

@@ -18,8 +18,7 @@ public class VoiceManager : MonoBehaviour
     // Локальная переменная, необходимая для того чтобы собрать все AudioSource на объекте
     AudioSource[] audios;
 
-    private bool ispaused;
-
+    
 
     /// Открытое свойство Одиночки для доступа к полям и методам из других классов
     /**
@@ -34,10 +33,10 @@ public class VoiceManager : MonoBehaviour
      */
     void Awake()
     {
+
         // Убедимся, что нет других экземпляров этого класса
         if (me != null && me != this)
         {
-
             Destroy(gameObject);
         }
         else
@@ -46,8 +45,8 @@ public class VoiceManager : MonoBehaviour
             me = this;
 
             //Добавление слушателей на выключение динамиков во время паузы и включение во отжатия паузы
-            Messenger.AddListener<bool>("PauseStatus", pauseStatus);
 
+            Messenger.AddListener<bool>("PauseStatus", pauseStatus);
 
             // Объект не будет уничтожаться перед загрузкой следующей сцены
             GameObject.DontDestroyOnLoad(this.gameObject);
@@ -58,28 +57,22 @@ public class VoiceManager : MonoBehaviour
     {
         // если уже есть, но уничтожаем конфликтную копию
         Messenger.RemoveListener<bool>("PauseStatus", pauseStatus);
-
-
     }
 
     void pauseStatus(bool isPaused)
     {
         if (isPaused)
         {
-            for (int i = 0; i < audios.Length; i++)
+           MusicOFF();
+            for (int i = 1; i < audios.Length; i++)
             {
                 if (audios[i].isActiveAndEnabled)
                 {
-                    audios[i].Pause();
+                    audios[i].Stop();
                 }
             }
         }
-        else {
-            for (int i = 0; i < audios.Length; i++)
-            {
-                audios[i].UnPause();
-            }
-        }
+        else MusicON();
     }
 
     /// Распределение компонентов AudioSource
@@ -216,7 +209,7 @@ public class VoiceManager : MonoBehaviour
         PlayerPrefs.SetInt("m", 1);
 
         // Возвращаем громкость до состояния 1. Громче она быть не может.
-        asMusic.volume = 1.0F;
+        asMusic.volume = 0.5F;
     }
 
 
@@ -323,11 +316,7 @@ public class VoiceManager : MonoBehaviour
     }
 
 
-    //Слушатель перенаправляет в данный метод для паузы основных динамиков(шум не включен)
-    private void stopAllSound()
-    {
+   
 
-    }
-
-    //Слушатель перенаправляет в данный метод для возобновления проигрывания основных динамиков(шум не включен)
+   
 }
