@@ -18,6 +18,9 @@ public class VoiceManager : MonoBehaviour
     // Локальная переменная, необходимая для того чтобы собрать все AudioSource на объекте
     AudioSource[] audios;
 
+    // Переменная для хранения громкости звука до паузы
+    private float pauseMV;
+
     
 
     /// Открытое свойство Одиночки для доступа к полям и методам из других классов
@@ -65,6 +68,8 @@ public class VoiceManager : MonoBehaviour
     {
         if (isPaused)
         {
+            pauseMV = asMusic.volume;
+            asMusic.volume = 0.0f;
            MusicOFF();
             for (int i = 1; i < audios.Length; i++)
             {
@@ -74,7 +79,7 @@ public class VoiceManager : MonoBehaviour
                 }
             }
         }
-        else MusicON();
+        else asMusic.volume = pauseMV ;
     }
 
     /// Распределение компонентов AudioSource
