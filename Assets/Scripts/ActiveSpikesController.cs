@@ -39,17 +39,14 @@ public class ActiveSpikesController : MonoBehaviour {
         if (isInvoked) return;
         // Вызов апдейта
         if (spikes.position == baseEndPoint) {
-            if (!isInvoked) {
                 Invoke("toStartPoint", DelayTimeOnTop);
-                isInvoked = true;
-            }      
+                isInvoked = true;    
         }
         else if (spikes.position == startPoint) {
-            if (!isInvoked) {
                 Invoke("toEndPoint", DelayTimeOnTop);
                 isInvoked = true;
-            }
-        }  
+        }
+  
     }
     void toEndPoint() {
         endPoint = baseEndPoint;
