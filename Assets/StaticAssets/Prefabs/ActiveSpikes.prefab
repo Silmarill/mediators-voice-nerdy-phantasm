@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 61986368544399132}
   - component: {fileID: 114855119710489752}
   - component: {fileID: 114065102872423542}
-  - component: {fileID: 95888041078810290}
+  - component: {fileID: 114590691940859274}
   m_Layer: 0
   m_Name: ActiveSpikes
   m_TagString: Untagged
@@ -69,23 +69,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.64199066}
   m_EdgeRadius: 0
---- !u!95 &95888041078810290
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1405766696572020}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114065102872423542
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -97,6 +80,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0925e5317cc2424dacb027ebd68ac13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114590691940859274
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1405766696572020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be144d797b5e53444a6d1fa154173c37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spikes: {fileID: 0}
+  xShift: 0
+  yShift: 0
+  zShift: 0
+  moveSpeed: 0
+  DelayTimeOnTop: 0
+  DelayTimeOnBot: 0
 --- !u!114 &114855119710489752
 MonoBehaviour:
   m_ObjectHideFlags: 1
