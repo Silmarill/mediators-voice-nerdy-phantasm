@@ -90,13 +90,13 @@ public class ActiveSpikesController : MonoBehaviour {
             x = xShift;
             if (yShift != 0) {
                 y = yShift;
-                return new Vector3(x, y, zShift);
+                return new Vector3(baseStartPoint.x + x, baseStartPoint.y + y, zShift);
             }
-            return new Vector3(x, baseStartPoint.y, zShift);
+            return new Vector3(baseStartPoint.x + x, baseStartPoint.y, zShift);
         }
         if (yShift != 0) {
             y = yShift;
-            return new Vector3(baseStartPoint.x, y, zShift);
+            return new Vector3(baseStartPoint.x,baseStartPoint.y + y, zShift);
         }
         return new Vector3(baseStartPoint.x, baseStartPoint.y + _bc2D.size.y, zShift);
     }
