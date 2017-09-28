@@ -85,7 +85,7 @@ public class ProjectileController : MonoBehaviour {
 
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (isPaused) return;
+      
         if (other.tag == "Enemy") {
             other.GetComponent <EnemyHealthManager>().GiveDamage(damageToGive);
         }

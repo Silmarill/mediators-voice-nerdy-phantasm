@@ -23,8 +23,7 @@ public class PauseManager : MonoBehaviour {
     // После Messenger.Broadcast<bool>("PauseStatus", pauseStatus) слушатель перенаправляет в данный метод с bool переменной, отвечающей за паузу
     void pauseStatus(bool isPaused) {
         // При включении паузы требуется остановить анимацию и движение
-        if (isPaused)
-        {
+        if (isPaused) {
             if (_r2d != null) {
                 _r2d.velocity = new Vector2(0, 0);
                 _r2d.Sleep();
@@ -33,32 +32,27 @@ public class PauseManager : MonoBehaviour {
                 _ator.enabled = false;
             }
         // Выключает каждый скрипт в  объекте
-            foreach (MonoBehaviour mono in monoList)
-            {
+            foreach (MonoBehaviour mono in monoList) {
                 mono.enabled = false;
                 
             }
         }
         // Включение скриптов
         else {
-            if (_ator != null)
-            {
+            if (_ator != null) {
                 _ator.enabled = true;
             }
-            if (_r2d != null)
-            {
+            if (_r2d != null) {
                 _r2d.WakeUp();
             }
-            foreach (MonoBehaviour mono in monoList)
-            {
+            foreach (MonoBehaviour mono in monoList) {
                 mono.enabled = true;
             }
          
         }
     }
     // Удаление слушателя
-    private void OnDestroy()
-    {
+    private void OnDestroy() {
         Messenger.RemoveListener<bool>("PauseStatus", pauseStatus);
     }
 
