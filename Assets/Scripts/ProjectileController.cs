@@ -19,6 +19,7 @@ public class ProjectileController : MonoBehaviour {
     public int damageToGive;
 
     private bool isPaused;
+    private Vector2 velocityBeforePause;
 
     // Use this for initialization
     void OnEnable() {
@@ -48,13 +49,14 @@ public class ProjectileController : MonoBehaviour {
         this.isPaused = isPaused;
         if (isPaused)
         {
-            _r2d.velocity = new Vector2(0, _r2d.velocity.y);
+            velocityBeforePause = _r2d.velocity;
+            _r2d.velocity = Vector3.zero;
             _r2d.angularVelocity = 0.0f;
         }
         // В случае отжатия паузы всем буллетсам возвращаются их параметры для перемещения
         else
         {
-            _r2d.velocity = new Vector2(speed, _r2d.velocity.y);
+            _r2d.velocity = velocityBeforePause;
             _r2d.angularVelocity = rotationSpeed;
         }
 
@@ -83,6 +85,7 @@ public class ProjectileController : MonoBehaviour {
 
 
     void OnTriggerEnter2D(Collider2D other) {
+        if (isPaused) return;
         if (other.tag == "Enemy") {
             other.GetComponent <EnemyHealthManager>().GiveDamage(damageToGive);
         }
