@@ -19,6 +19,7 @@ public class EnemyHealthManager : MonoBehaviour {
         }
     }
 
+
     public void GiveDamage(int damageToGive) {
         enemyHealth -= damageToGive;
         VoiceManager.me.PlayNoiseSound(acEnemy); ;

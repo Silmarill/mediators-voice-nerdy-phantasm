@@ -8,7 +8,7 @@ public class TimeManager : MonoBehaviour {
     public float startingTime;
     private Text txtTimer;
 
-    private PauseMenu _pauseMenu;
+   
 
 
     public GameObject gameOverScreen;
@@ -24,12 +24,12 @@ public class TimeManager : MonoBehaviour {
         txtTimer = GetComponent <Text>();
         _hpManager = FindObjectOfType<HealthManager>();
         player = FindObjectOfType<PlayerController>();
-        _pauseMenu = FindObjectOfType <PauseMenu>();
+  
     }
     
 
     void Update () {
-        if (_pauseMenu.isPaused) {
+        if (PauseMenu.isPaused) {
             return;
         }
 

@@ -16,6 +16,9 @@ public class EnemyProjectileController : MonoBehaviour {
 
     private Transform _tr;
 
+    private bool isPaused;
+    private Vector2 velocityBeforePause;
+
     void OnEnable() {
         speedOnStart = speed;
 
@@ -32,7 +35,7 @@ public class EnemyProjectileController : MonoBehaviour {
             player = PlayerController.me.gameObject.GetComponent <Transform>();
         }
 
-
+        
         if (player.position.x < _tr.position.x) {
             speed = -speed;
             rotationSpeed = -rotationSpeed;
@@ -47,23 +50,53 @@ public class EnemyProjectileController : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+        // Добавление слушателя из-за нужды в переопределении логики
+        Messenger.AddListener<bool>("PauseStatus", pauseStatus);
+
         _r2d = GetComponent <Rigidbody2D>();
         player = PlayerController.me.gameObject.GetComponent<Transform>();
         _tr = GetComponent <Transform>();
+        
     }
 
+    // Получение от слушателя информации о паузе, остановка движения буллетсов
+    void pauseStatus(bool isPaused) {
+        this.isPaused = isPaused;
+        if (isPaused) {
+            velocityBeforePause = _r2d.velocity;
+            _r2d.velocity = Vector3.zero;
+            _r2d.angularVelocity = 0.0f;
+        }
+        // В случае отжатия паузы всем буллетсам возвращаются их параметры для перемещения
+        else
+        {
+            _r2d.velocity = velocityBeforePause;
+            _r2d.angularVelocity = rotationSpeed;
+        }
+        
+    }
 
-     void OnDisable() {
+    //При разрушении объекта убираем слушатель.
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener<bool>("PauseStatus", pauseStatus);
+    }
+
+    void OnDisable() {
         speed = speedOnStart;
     }
     
 
     
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Player") {
-           HealthManager.HurtPlayer(damageToGive);
-        }
-        impactEffect.Spawn(transform.position, transform.rotation);
-        gameObject.Recycle();
+        if (isPaused) return;
+        
+            if (other.tag == "Player")
+            {
+                HealthManager.HurtPlayer(damageToGive);
+            }
+            impactEffect.Spawn(transform.position, transform.rotation);
+            gameObject.Recycle();
+        
     }
 }

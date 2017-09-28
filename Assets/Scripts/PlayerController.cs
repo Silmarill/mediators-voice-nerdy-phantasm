@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
     private Animator _ator;
     private Rigidbody2D _r2d;
     private Transform _tr;
+   
 
     public Transform firePoint;
     public GameObject projectile;
@@ -45,34 +46,29 @@ public class PlayerController : MonoBehaviour {
     private float climbVelosity;
     public float climbSpeed;
     private float gravityStore;
+    private bool isPaused;
 
     public static PlayerController me { get; private set; }
-
-
+    
 
     void Start() {
+        
         me = this;
         _r2d = GetComponent <Rigidbody2D>();
         _ator = GetComponent <Animator>();
         _tr = GetComponent <Transform>();
+        
         gravityStore = _r2d.gravityScale;
+
     }
 
-
-
-    void FixedUpdate() {
+   void FixedUpdate() {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
     }
-
-
-
     void Update() {
-
         if (isGrounded) {
             isDoubleJumped = false;
         }
-
-       
         _ator.SetBool("isGrounded", isGrounded);
          #if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
 

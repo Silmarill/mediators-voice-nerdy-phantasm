@@ -9,7 +9,7 @@ public class PauseMenu : MonoBehaviour {
     public string  levelSelect;
     public string   mainMenu;
 
-    public bool isPaused;
+    public static bool isPaused;
     public GameObject pauseMenuCanvas;
 
     
@@ -17,17 +17,17 @@ public class PauseMenu : MonoBehaviour {
 
     void Update() {
         if (isPaused) {
-            pauseMenuCanvas.SetActive(true);
-            Time.timeScale = 0;
+            pauseMenuCanvas.SetActive(true);       
         } else {
             pauseMenuCanvas.SetActive(false);
-            Time.timeScale = 1;
         }
 
-       #if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
-         if (Input.GetKeyDown(KeyCode.Escape)) {
+#if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
             TogglePause();
-         }
+            Messenger.Broadcast("PauseStatus", isPaused);
+        }
         #endif
     }
 
@@ -37,6 +37,7 @@ public class PauseMenu : MonoBehaviour {
 
     public void ResumeGame() {
         isPaused = false;
+        Messenger.Broadcast("PauseStatus", isPaused);
     }
 
     public void LevelSelect() {

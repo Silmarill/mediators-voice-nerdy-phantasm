@@ -17,15 +17,16 @@ public class EnemyPatrol : MonoBehaviour {
 
     private Rigidbody2D _r2d;
     private Transform _tr;
-
-
     void Start() {
         _r2d = GetComponent <Rigidbody2D>();
         _tr = GetComponent <Transform>();
+        
     }
 
+    
 
     void Update () {
+        
         isWallHitted = Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, whatIsWall);
 
         atEdge = Physics2D.OverlapCircle(edgeCheck.position, wallCheckRadius, whatIsWall);
@@ -46,4 +47,5 @@ public class EnemyPatrol : MonoBehaviour {
 
 
     }
+  
 }
