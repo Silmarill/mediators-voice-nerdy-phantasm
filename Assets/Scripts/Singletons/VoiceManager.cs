@@ -70,7 +70,6 @@ public class VoiceManager : MonoBehaviour
         {
             pauseMV = asMusic.volume;
             asMusic.volume = 0.0f;
-           MusicOFF();
             for (int i = 1; i < audios.Length; i++)
             {
                 if (audios[i].isActiveAndEnabled)
