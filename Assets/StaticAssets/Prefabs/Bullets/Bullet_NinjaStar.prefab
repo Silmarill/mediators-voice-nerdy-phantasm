@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1839053117680606}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.192, y: -2.124, z: 0}
+  m_LocalPosition: {x: -6.03, y: -0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -124,6 +124,8 @@ MonoBehaviour:
   player: {fileID: 0}
   rotationSpeed: -3600
   damageToGive: 1
+  moveDistance: 5
+  moveDuration: 1
 --- !u!212 &212750298652304924
 SpriteRenderer:
   m_ObjectHideFlags: 1
