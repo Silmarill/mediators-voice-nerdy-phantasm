@@ -89,7 +89,6 @@ public class EnemyProjectileController : MonoBehaviour {
 
     
     void OnTriggerEnter2D(Collider2D other) {
-        if (isPaused) return;
         
             if (other.tag == "Player")
             {
