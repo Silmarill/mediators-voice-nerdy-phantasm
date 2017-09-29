@@ -4937,8 +4937,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFollowin: 0
+  isSmooth: 1
   xOffset: 0
   yOffset: 2
+  smoothTime: {x: 0.07, y: 0.07}
 --- !u!114 &1443353477
 MonoBehaviour:
   m_ObjectHideFlags: 0

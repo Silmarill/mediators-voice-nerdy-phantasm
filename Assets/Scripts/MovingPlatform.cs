@@ -6,16 +6,16 @@ public class MovingPlatform : MonoBehaviour {
 
     public Transform platform;
     public float moveSpeed;
-
-    //array
     public Transform[] points;
 
+    private int pointIndex = 0;
 
-    public int pointIndex = 0; 
+    
 
-
-
-    void Update() {
+    ///<summary>
+    /// Fixed нужен для того,чтобы камера успевала за платформой
+    /// </summary>
+    void FixedUpdate() {
         platform.position = Vector3.MoveTowards(platform.position,points[pointIndex].position,moveSpeed * Time.deltaTime);
         if (platform.position == points[pointIndex].position) {
             ++pointIndex;
