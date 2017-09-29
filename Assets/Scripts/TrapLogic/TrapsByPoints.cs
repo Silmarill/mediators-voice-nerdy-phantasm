@@ -41,7 +41,7 @@ public class TrapsByPoints : MonoBehaviour {
                 if (pointIndex == points.Length) {
                     pointIndex = 0;
                     if (isOneTimeUse) {
-                        disableTriggers();
+                        DisableTriggers();
                         pointEndFlag = true;
                     }
                 }
@@ -49,7 +49,7 @@ public class TrapsByPoints : MonoBehaviour {
         }
     
     // Выключение триггеров для одного использования
-    void disableTriggers() {
+    void DisableTriggers() {
         // для всех Collider2D убираем триггер для безопасного хождения по ним
         if (boxList.Length > 0) {
             for (int i = 0; i < boxList.Length; i++) {

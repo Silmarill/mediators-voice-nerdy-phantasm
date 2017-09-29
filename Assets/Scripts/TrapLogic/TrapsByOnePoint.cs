@@ -21,10 +21,10 @@ public class TrapsByOnePoint : MonoBehaviour {
 
     // Задержки при достижении конечной точки.
     // В верхней точке
-    public float DelayTimeOnTop;
+    public float delayTimeOnTop;
 
     // В нижней точке
-    public float DelayTimeOnBot;
+    public float delayTimeOnBot;
 
     // массивы коллайдеров для обработки в случае неуказанных параметров передает размер по координате y если указан хоть один бокс коллайдер
     public BoxCollider2D[] boxList;
@@ -50,7 +50,7 @@ public class TrapsByOnePoint : MonoBehaviour {
         baseStartPoint = spikes.position;
 
         // Получение конечной позиции объекта
-        baseEndPoint = setEndPoint();
+        baseEndPoint = SetEndPoint();
 
         // Присваивание конечной позиции для старта объекта
         endPoint = baseEndPoint;
@@ -64,30 +64,30 @@ public class TrapsByOnePoint : MonoBehaviour {
         // Проверка достижений начальной или конечной точки в пути объекта
         if (spikes.position == baseEndPoint) {
             if (!isOneTimeUse) {
-                Invoke("toStartPoint", DelayTimeOnTop);
+                Invoke("ToStartPoint", delayTimeOnTop);
                 isInvoked = true;
             }
             else {
-                disableTriggers();
+                DisableTriggers();
                 isInvoked = true;
             }
         }
         else if (spikes.position == baseStartPoint) {
-            Invoke("toEndPoint", DelayTimeOnBot);
+            Invoke("ToEndPoint", delayTimeOnBot);
             isInvoked = true;
         }
     }
     // Присваивание в endPoint требуемого Vector3 для обратного пути.
-    void toEndPoint() {
+    void ToEndPoint() {
         endPoint = baseEndPoint;
         isInvoked = false;
     }
-    void toStartPoint() {
+    void ToStartPoint() {
         endPoint = baseStartPoint;
         isInvoked = false;
     }
     // Выключение триггеров для одного использования
-    void disableTriggers() {
+    void DisableTriggers() {
         // для всех Collider2D убираем триггер для безопасного хождения по ним
         if (boxList.Length > 0) {
             for (int i = 0; i < boxList.Length; i++) {
@@ -104,7 +104,7 @@ public class TrapsByOnePoint : MonoBehaviour {
 
     // Вызов метода для определения конечной позиции объекта с полученными в едиторе параметрами.
     // При их отсутствии создает объект со стандартной логикой "шипы из под земли"
-    Vector3 setEndPoint() {
+    Vector3 SetEndPoint() {
         if (boxList.Length > 0 && xShift == 0 && yShift == 0) {
             return new Vector3(baseStartPoint.x, baseStartPoint.y + boxList[0].size.y, zShift);
         }
