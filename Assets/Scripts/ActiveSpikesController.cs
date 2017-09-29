@@ -26,9 +26,9 @@ public class ActiveSpikesController : MonoBehaviour {
     // В нижней точке
     public float DelayTimeOnBot;
 
-    // BoxCollider2D в случае неуказанных параметров передает размер по координате y 
-    private BoxCollider2D _bc2D;
-
+    // массивы коллайдеров для обработки в случае неуказанных параметров передает размер по координате y если указан хоть один бокс коллайдер
+    public BoxCollider2D[] boxList;
+    public CircleCollider2D[] circleList;
     // Базовые точки, от которой к которой двигается объект
     private Vector3 baseStartPoint;
     private Vector3 baseEndPoint;
@@ -39,9 +39,12 @@ public class ActiveSpikesController : MonoBehaviour {
     // Проверка на метод Invoke().
     private bool isInvoked;
 
+    // Параметр для проверки, является ли объект одноразовым(напр. падающий камень)
+    public bool isOneTimeUse;
+
     // Use this for initialization
     void Start() {
-        _bc2D = GetComponent<BoxCollider2D>();
+
         isInvoked = false;
 
         // Получение стартовой позиции объекта
@@ -57,13 +60,29 @@ public class ActiveSpikesController : MonoBehaviour {
     }
    
     void Update () {
+        if (isInvoked) return;
         // Постоянно обновление позиции через Vector3.MoveTowards для более плавного движения.
         spikes.position = Vector3.MoveTowards(spikes.position, endPoint, moveSpeed * Time.deltaTime);
-        if (isInvoked) return;
         // Проверка достижений начальной или конечной точки в пути объекта
         if (spikes.position == baseEndPoint) {
+            if (!isOneTimeUse) {
                 Invoke("toStartPoint", DelayTimeOnTop);
-                isInvoked = true;    
+                isInvoked = true;
+            }
+            else {
+                // для всех Collider2D убираем триггер для безопасного хождения по ним
+                if (boxList.Length > 0) {
+                    for (int i = 0; i < boxList.Length; i++) {
+                        boxList[i].isTrigger = false;
+                    }
+                }
+                if (circleList.Length > 0) {
+                    for (int i = 0; i < circleList.Length; i++) {
+                        circleList[i].isTrigger = false;
+                    }
+                }
+                isInvoked = true;
+            }
         }
         else if (spikes.position == baseStartPoint) {
                 Invoke("toEndPoint", DelayTimeOnBot);
@@ -84,20 +103,9 @@ public class ActiveSpikesController : MonoBehaviour {
     // Вызов метода для определения конечной позиции объекта с полученными в едиторе параметрами.
     // При их отсутствии создает объект со стандартной логикой "шипы из под земли"
     Vector3 setEndPoint() {
-        float x = 0;
-        float y = 0;
-        if (xShift != 0) {
-            x = xShift;
-            if (yShift != 0) {
-                y = yShift;
-                return new Vector3(baseStartPoint.x + x, baseStartPoint.y + y, zShift);
-            }
-            return new Vector3(baseStartPoint.x + x, baseStartPoint.y, zShift);
+        if (boxList.Length > 0 && xShift == 0 && yShift == 0) {
+            return new Vector3(baseStartPoint.x, baseStartPoint.y + boxList[0].size.y, zShift);
         }
-        if (yShift != 0) {
-            y = yShift;
-            return new Vector3(baseStartPoint.x,baseStartPoint.y + y, zShift);
-        }
-        return new Vector3(baseStartPoint.x, baseStartPoint.y + _bc2D.size.y, zShift);
+        return new Vector3(baseStartPoint.x + xShift, baseStartPoint.y + yShift, zShift);
     }
 }
