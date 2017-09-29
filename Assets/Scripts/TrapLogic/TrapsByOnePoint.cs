@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// Класс предназначен для вертикального передвижения объекта на параметры yShift,zShift и xShift, 
+// Класс предназначен для передвижения объекта на параметры yShift,zShift и xShift, 
 // а если ни один из заданных параметров не предоставлен - то выступают как обычные шипы из под земли
-public class ActiveSpikesController : MonoBehaviour {
+public class TrapsByOnePoint : MonoBehaviour {
 
-    
+
     public Transform spikes;
 
     // Вводимые данные, такие как :
@@ -44,22 +44,20 @@ public class ActiveSpikesController : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-
         isInvoked = false;
 
         // Получение стартовой позиции объекта
         baseStartPoint = spikes.position;
 
-        
-       // Получение конечной позиции объекта
+        // Получение конечной позиции объекта
         baseEndPoint = setEndPoint();
-       
-       // Присваивание конечной позиции для старта объекта
+
+        // Присваивание конечной позиции для старта объекта
         endPoint = baseEndPoint;
-        
+
     }
-   
-    void Update () {
+
+    void Update() {
         if (isInvoked) return;
         // Постоянно обновление позиции через Vector3.MoveTowards для более плавного движения.
         spikes.position = Vector3.MoveTowards(spikes.position, endPoint, moveSpeed * Time.deltaTime);
@@ -70,25 +68,14 @@ public class ActiveSpikesController : MonoBehaviour {
                 isInvoked = true;
             }
             else {
-                // для всех Collider2D убираем триггер для безопасного хождения по ним
-                if (boxList.Length > 0) {
-                    for (int i = 0; i < boxList.Length; i++) {
-                        boxList[i].isTrigger = false;
-                    }
-                }
-                if (circleList.Length > 0) {
-                    for (int i = 0; i < circleList.Length; i++) {
-                        circleList[i].isTrigger = false;
-                    }
-                }
+                disableTriggers();
                 isInvoked = true;
             }
         }
         else if (spikes.position == baseStartPoint) {
-                Invoke("toEndPoint", DelayTimeOnBot);
-                isInvoked = true;
+            Invoke("toEndPoint", DelayTimeOnBot);
+            isInvoked = true;
         }
-  
     }
     // Присваивание в endPoint требуемого Vector3 для обратного пути.
     void toEndPoint() {
@@ -99,6 +86,21 @@ public class ActiveSpikesController : MonoBehaviour {
         endPoint = baseStartPoint;
         isInvoked = false;
     }
+    // Выключение триггеров для одного использования
+    void disableTriggers() {
+        // для всех Collider2D убираем триггер для безопасного хождения по ним
+        if (boxList.Length > 0) {
+            for (int i = 0; i < boxList.Length; i++) {
+                boxList[i].isTrigger = false;
+            }
+        }
+        if (circleList.Length > 0) {
+            for (int i = 0; i < circleList.Length; i++) {
+                circleList[i].isTrigger = false;
+            }
+        }
+    }
+
 
     // Вызов метода для определения конечной позиции объекта с полученными в едиторе параметрами.
     // При их отсутствии создает объект со стандартной логикой "шипы из под земли"
