@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 222065569073217622}
   - component: {fileID: 114455302323761734}
   - component: {fileID: 114286798145326318}
-  - component: {fileID: 114325965302675178}
+  - component: {fileID: 114547126002336104}
   m_Layer: 5
   m_Name: MobileJoystick
   m_TagString: Untagged
@@ -722,9 +722,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 987dd8d42e39f8f48b883d0c40dfadb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axisShift: 0
-  xLadderAxis: 0
-  levelExit_xAxis: 0
 --- !u!114 &114229566003023768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -953,20 +950,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: x 3
---- !u!114 &114325965302675178
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1463566435959610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 987dd8d42e39f8f48b883d0c40dfadb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  axisShift: 0.35
-  xLadderAxis: 0.8
-  levelExit_xAxis: 0.3
 --- !u!114 &114331514671410804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1144,6 +1127,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114547126002336104
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1463566435959610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c8d0dd107d3c7a4a8aefba7ea68e4f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axisShift: 0.3
+  xLadderAxis: 0.8
+  levelExit_yAxis: 0.9
 --- !u!114 &114570572334637480
 MonoBehaviour:
   m_ObjectHideFlags: 1
