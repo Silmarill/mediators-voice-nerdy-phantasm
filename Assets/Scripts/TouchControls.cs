@@ -8,11 +8,31 @@ public class TouchControls : MonoBehaviour {
     private PlayerController _p;
     private LevelLoader levelExit;
     private PauseMenu pausMenu;
+
+    ///<summary>
+    /// Значения ось X и ось Y для дальнейшего использования
+    ///</summary
     private float xAxis;
     private float yAxis;
+    ///<summary>
+    /// Проверка на состояние покоя джойстика 
+    ///</summary
     private bool isMoving;
+    ///<summary>
+    /// Переменная для определения минимального отклонения джойстика по оси X
+    /// и Y для реагирования методов для передвижения персонажа 
+    ///</summary>
     public float axisShift;
+    ///<summary>
+    /// Переменная для определения минимального отклонения джойстика по оси X
+    /// для выскакивания с лестницы, при условии нахождения в/на лестнице
+    ///</summary>
     public float xLadderAxis;
+    ///<summary>
+    /// Переменная для определения минимального отклонения джойстика по оси Y вверх 
+    /// для прохождения на следующий уровень, при условии нахождения у прохода
+    ///</summary>
+    public float levelExit_yAxis;
     // Use this for initialization
     void Start () {
         #if UNITY_STANDALONE || UNITY_WEBPLAYER
@@ -26,7 +46,7 @@ public class TouchControls : MonoBehaviour {
 
     private void Update() {
         ///<summary>
-        /// Горизонтальная и вертикальная ось джойстика
+        /// Каждый кадр выясняет оси координат джойстика для дальнейшей проверки
         ///</summary>
         xAxis = CrossPlatformInputManager.GetAxis("Horizontal");
         yAxis = CrossPlatformInputManager.GetAxis("Vertical");
@@ -54,7 +74,7 @@ public class TouchControls : MonoBehaviour {
 
         if (!isMoving) return;
 
-        if (yAxis > 0.3f) {
+        if (yAxis > levelExit_yAxis) {
             if (levelExit.isPlayerInZone) {
                 levelExit.LoadLevel();
             }

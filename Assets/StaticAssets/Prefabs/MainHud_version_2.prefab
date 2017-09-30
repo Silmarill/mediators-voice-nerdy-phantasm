@@ -724,6 +724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axisShift: 0
   xLadderAxis: 0
+  levelExit_xAxis: 0
 --- !u!114 &114229566003023768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -965,6 +966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axisShift: 0.35
   xLadderAxis: 0.8
+  levelExit_xAxis: 0.3
 --- !u!114 &114331514671410804
 MonoBehaviour:
   m_ObjectHideFlags: 1
