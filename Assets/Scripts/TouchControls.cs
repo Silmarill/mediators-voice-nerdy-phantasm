@@ -54,6 +54,12 @@ public class TouchControls : MonoBehaviour {
 
         if (!isMoving) return;
 
+        if (yAxis > 0.3f) {
+            if (levelExit.isPlayerInZone) {
+                levelExit.LoadLevel();
+            }
+        }
+
         if (_p.isOnLadder) {
             if (yAxis > 0) {
                 _p.Climb(1);
@@ -69,11 +75,11 @@ public class TouchControls : MonoBehaviour {
             }
             if (yAxis < -0.35f) {
                 _p.Climb(-1);
-                if (xAxis > 0.9f) {
+                if (xAxis > 0.8f) {
                     _p.Move(1);
                     return;
                 }
-                else if (xAxis < -0.9f) {
+                else if (xAxis < -0.8f) {
                     _p.Move(-1);
                     return;
                 }
