@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
-
+// TODO Сделать и потестировать другой вариант джойстика - круг, разделенный на 4 части
 public class TouchControls : MonoBehaviour {
 
     private PlayerController _p;
@@ -11,14 +11,14 @@ public class TouchControls : MonoBehaviour {
     private float xAxis;
     private float yAxis;
     private bool isMoving;
-    private float oldxAxis;
+    public float axisShift;
+    public float xLadderAxis;
     // Use this for initialization
     void Start () {
- #if UNITY_STANDALONE || UNITY_WEBPLAYER
+        #if UNITY_STANDALONE || UNITY_WEBPLAYER
         gameObject.SetActive(false);
         return;
-#endif 
-
+        #endif 
         _p = FindObjectOfType <PlayerController>();
         levelExit = FindObjectOfType <LevelLoader>();
         pausMenu  = FindObjectOfType <PauseMenu>();
@@ -64,32 +64,32 @@ public class TouchControls : MonoBehaviour {
             if (yAxis > 0) {
                 _p.Climb(1);
                 _p.Move(0);
-                if (xAxis > 0.8f) {
+                if (xAxis > xLadderAxis) {
                     _p.Move(1);
                     return;
                 }
-                else if (xAxis < -0.8f) {
+                else if (xAxis < -xLadderAxis) {
                     _p.Move(-1);
                     return;
                 }
             }
-            if (yAxis < -0.35f) {
+            if (yAxis < -axisShift) {
                 _p.Climb(-1);
-                if (xAxis > 0.8f) {
+                if (xAxis > xLadderAxis) {
                     _p.Move(1);
                     return;
                 }
-                else if (xAxis < -0.8f) {
+                else if (xAxis < -xLadderAxis) {
                     _p.Move(-1);
                     return;
                 }
             }
             return;
         }
-        if (xAxis > 0.35f) {
+        if (xAxis > axisShift) {
             _p.Move(1);
         }
-        if (xAxis < -0.35f) {
+        if (xAxis < -axisShift) {
             _p.Move(-1);
         }
     }
@@ -134,7 +134,6 @@ public class TouchControls : MonoBehaviour {
 
     public void Jump () {
         _p.Jump();
-
         if (levelExit.isPlayerInZone) {
             levelExit.LoadLevel();
         }
