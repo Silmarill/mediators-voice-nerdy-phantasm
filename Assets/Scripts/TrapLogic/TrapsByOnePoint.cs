@@ -57,7 +57,7 @@ public class TrapsByOnePoint : MonoBehaviour {
 
     }
 
-    void Update() {
+    void FixedUpdate() {
         if (isInvoked) return;
         // Постоянно обновление позиции через Vector3.MoveTowards для более плавного движения.
         spikes.position = Vector3.MoveTowards(spikes.position, endPoint, moveSpeed * Time.deltaTime);

@@ -32,7 +32,7 @@ public class TrapsByPoints : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate() {
         if (pointEndFlag) return;
         // На случай,если объект нужно двигать по точкам
             spikes.position = Vector3.MoveTowards(spikes.position, points[pointIndex].position, moveSpeed * Time.deltaTime);
