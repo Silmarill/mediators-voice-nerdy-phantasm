@@ -177,15 +177,15 @@ public class PlayerController : MonoBehaviour {
 
     public void Jump() {
         // Вызов метода PlayNoiseSound для проигрывания звука прыжка
-        VoiceManager.me.PlayNoiseSound(acJump);
-
         if (isGrounded) {
             _r2d.velocity = new Vector2(_r2d.velocity.x, jumpHeight);
+            VoiceManager.me.PlayNoiseSound(acJump);
         }
 
         if (!isDoubleJumped && !isGrounded) {
             _r2d.velocity = new Vector2(_r2d.velocity.x, jumpHeight);
             isDoubleJumped = true;
+            VoiceManager.me.PlayNoiseSound(acJump);
         }
     }
 
