@@ -1304,22 +1304,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!1 &416859623 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1054482966169130, guid: 14d65a0324b07f54b91175c24772090e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1463721035}
---- !u!114 &416859624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 416859623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0925e5317cc2424dacb027ebd68ac13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &476141594
 GameObject:
   m_ObjectHideFlags: 0
@@ -3356,7 +3340,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4905127192151062, guid: 3406281ef3c963e4386fd09e5c2c5ae8, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1405766696572020, guid: 3406281ef3c963e4386fd09e5c2c5ae8, type: 2}
       propertyPath: m_Name
@@ -5146,34 +5130,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 1054482966169130, guid: 14d65a0324b07f54b91175c24772090e, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4411548189932800, guid: 14d65a0324b07f54b91175c24772090e, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.963
-      objectReference: {fileID: 0}
-    - target: {fileID: 212522841657071020, guid: 14d65a0324b07f54b91175c24772090e,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114489463297809762, guid: 14d65a0324b07f54b91175c24772090e,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4445920575015192, guid: 14d65a0324b07f54b91175c24772090e, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4445920575015192, guid: 14d65a0324b07f54b91175c24772090e, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114082549778990012, guid: 14d65a0324b07f54b91175c24772090e, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14d65a0324b07f54b91175c24772090e, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1467676916

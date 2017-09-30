@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 58720369115620082}
   - component: {fileID: 50478987504329302}
   - component: {fileID: 114580575722518200}
-  - component: {fileID: 114045046891196204}
   - component: {fileID: 114524651562498104}
   m_Layer: 10
   m_Name: Bullet_NinjaStar
@@ -39,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1839053117680606}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.192, y: -2.124, z: 0}
+  m_LocalPosition: {x: -6.03, y: -0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -80,18 +79,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1875
---- !u!114 &114045046891196204
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1839053117680606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46e1fbe5073c12340b9f13a4f91d51f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifeTime: 2
 --- !u!114 &114524651562498104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -122,8 +109,10 @@ MonoBehaviour:
     type: 2}
   _r2d: {fileID: 0}
   player: {fileID: 0}
-  rotationSpeed: -3600
-  damageToGive: 1
+  damageToGive: 2
+  travelDuration: 1
+  moveDistance: {x: 10, y: 0, z: 0}
+  rotationAmount: 540
 --- !u!212 &212750298652304924
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -108,6 +108,9 @@ MonoBehaviour:
   rotationSpeed: -180
   impactEffect: {fileID: 1587904326576880, guid: 68ca4994476dac840a6c8089a895ef7d,
     type: 2}
+  travelDuration: 1
+  moveDistance: {x: 10, y: 0, z: 0}
+  rotationAmount: 540
 --- !u!114 &114372788058295332
 MonoBehaviour:
   m_ObjectHideFlags: 1

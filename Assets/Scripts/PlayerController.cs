@@ -49,11 +49,14 @@ public class PlayerController : MonoBehaviour {
     private bool isPaused;
 
     public static PlayerController me { get; private set; }
-    
+
+    void Awake() {
+        me = this;
+    }
 
     void Start() {
         
-        me = this;
+        
         _r2d = GetComponent <Rigidbody2D>();
         _ator = GetComponent <Animator>();
         _tr = GetComponent <Transform>();
