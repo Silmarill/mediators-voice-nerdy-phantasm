@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour {
     public int pointPenaltyOnDeath;
 
     private Rigidbody2D _r2dPlayer;
-
+    private CircleCollider2D playerCollider;
 
 
     void Start() {
@@ -28,6 +28,7 @@ public class LevelManager : MonoBehaviour {
         player = FindObjectOfType <PlayerController>();
         _r2dPlayer = player.GetComponent <Rigidbody2D>();
         camcon = FindObjectOfType <CameraController>();
+        playerCollider = player.GetComponent<CircleCollider2D>();
     }
 
 
@@ -43,6 +44,7 @@ public class LevelManager : MonoBehaviour {
 
 
         player.enabled = false;
+        playerCollider.enabled = false;
         player.GetComponent <SpriteRenderer>().enabled = false;
         _r2dPlayer.velocity = Vector2.zero;
         camcon.isFollowin = false;
@@ -54,6 +56,7 @@ public class LevelManager : MonoBehaviour {
         yield return new WaitForSeconds(respawnDelay);
         player.knockbackCount = 0;
         camcon.isFollowin = true;
+        playerCollider.enabled = true;
         player.transform.position = currentCheckpoint.transform.position;
         player.enabled = true;
         player.GetComponent <SpriteRenderer>().enabled = true;
