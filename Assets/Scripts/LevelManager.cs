@@ -22,7 +22,6 @@ public class LevelManager : MonoBehaviour {
     private Rigidbody2D _r2dPlayer;
     private CircleCollider2D playerCollider;
 
-
     void Start() {
         // TODO: Если будет мультиплеер - тут будет затык
         player = FindObjectOfType <PlayerController>();
@@ -42,21 +41,21 @@ public class LevelManager : MonoBehaviour {
     public IEnumerator RespawnPlayerCoorutine() {
         deathParticle.Spawn(player.transform.position, Quaternion.identity);
 
-
-        player.enabled = false;
         playerCollider.enabled = false;
+        player.enabled = false; 
         player.GetComponent <SpriteRenderer>().enabled = false;
         _r2dPlayer.velocity = Vector2.zero;
         camcon.isFollowin = false;
+        _r2dPlayer.gravityScale = 0;
 
         //TODO: Перенести в Hazards
         Messenger.Broadcast("AddPoints",-pointPenaltyOnDeath);
-        
 
         yield return new WaitForSeconds(respawnDelay);
+        
+        playerCollider.enabled = true;
         player.knockbackCount = 0;
         camcon.isFollowin = true;
-        playerCollider.enabled = true;
         player.transform.position = currentCheckpoint.transform.position;
         player.enabled = true;
         player.GetComponent <SpriteRenderer>().enabled = true;
