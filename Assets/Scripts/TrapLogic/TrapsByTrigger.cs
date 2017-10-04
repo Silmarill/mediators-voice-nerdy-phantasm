@@ -40,8 +40,7 @@ public class TrapsByTrigger : MonoBehaviour {
         }
     }
     private IEnumerator OnCollisionEnter2D(Collision2D collision) {
-        if (trapTrigger.IsTouching(collision.collider)) {
-            Debug.Log(collision.collider);
+        if (trapTrigger.IsTouching(collision.collider)) {   
             yield return new WaitForSeconds(triggerDelay);
             setTriggersState(false);
             if (!isOneTimeUse) {

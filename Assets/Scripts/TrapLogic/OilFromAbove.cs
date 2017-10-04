@@ -1,36 +1,113 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class OilFromAbove : MonoBehaviour {
-    
-    public BoxCollider2D oilPathCollider;
-    private Transform playerTransform;
+    public float speed;
+    private float speedOnStart;
+    public GameObject deathEffect;
+    public GameObject impactEffect;
+
+    public Rigidbody2D _r2d;
+    public Transform player;
+
     private PlayerController playerController;
-    public float intervalBetweenDrops;
-    private float dropInterval;
-    public float recoveryDelay;
+
+    //TODO: Move this property to enemy
+    //public int pointsForKill;
+    public float slowValue;
+
+
+    private bool isPaused;
+    private Vector2 velocityBeforePause;
+
+
+    private Transform _tr;
+
+
+    public float travelDuration;
+    public Vector3 moveDistance;
+    private Vector3 moveDistanceStorage;
+
+    public float rotationAmount;
+    private float rotationAmountStorage;
+
+    private Sequence s;
+
+    void Awake() {
+        playerController = FindObjectOfType<PlayerController>();
+        player = playerController.GetComponent<Transform>();   // PlayerController.me.gameObject
+        _tr = GetComponent<Transform>();
+        speedOnStart = -speed;
+        moveDistanceStorage = moveDistance;
+        rotationAmountStorage = rotationAmount;
+    }
+
+
 
     // Use this for initialization
-    void Start () {
-        playerController = FindObjectOfType<PlayerController>();
-        playerTransform = playerController.GetComponent<Transform>();
-        dropInterval = intervalBetweenDrops;
+    void OnEnable() {
+        s = DOTween.Sequence();
+
+        //add new animation to sequence 
+
+        /*  s.Append(_tr.DOBlendableMoveBy(moveDistance, travelDuration)
+                      .OnComplete(gameObject.Recycle) 
+                      .SetEase(Ease.Linear));  */
+        s.Append(_tr.DOMove(moveDistance, travelDuration)
+        .OnComplete(gameObject.Recycle)
+        .SetEase(Ease.Linear));
+        //join() will play WITH curret animation. Not After.
+        s.Join(_tr.DORotate(new Vector3(0, 0, rotationAmount), travelDuration, RotateMode.FastBeyond360)
+                  .SetEase(Ease.Linear));
     }
-    
-    // Update is called once per frame
-   
-    private void OnTriggerStay2D(Collider2D collision) {
-        if (oilPathCollider.bounds.Contains(playerTransform.position)) {
-            dropInterval -= Time.deltaTime;
-            if (dropInterval < 0) {      
-                playerController.gotOiled();
-                dropInterval = intervalBetweenDrops;
-            }
+
+
+
+    void Start() {
+        Messenger.AddListener<bool>("PauseStatus", PauseStatus);
+    }
+
+
+
+    // Получение от слушателя информации о паузе, остановка движения пуль
+    void PauseStatus(bool isPaused) {
+        this.isPaused = isPaused;
+
+        if (isPaused) {
+            _tr.DOPause();
+        }
+        else {
+            _tr.DOPlay();
         }
     }
-    private IEnumerator OnTriggerExit2D(Collider2D collision) {
-        yield return new WaitForSeconds(recoveryDelay);
-        playerController.gotFreeFromOil();
+
+
+
+   void OnCollisionEnter2D(Collision2D  other) {
+        if (other.transform.tag == "Player") {
+            playerController.gotOiled(slowValue);
+            Debug.Log("gotOiled");
+        }
+        impactEffect.Spawn(_tr.position, _tr.rotation);
+        gameObject.Recycle();
     }
+
+
+
+    void OnDisable() {
+        speed = speedOnStart;
+        moveDistance = moveDistanceStorage;
+        rotationAmount = rotationAmountStorage;
+
+        s.Kill();
+    }
+
+
+    //При разрушении объекта убираем слушатель.
+    private void OnDestroy() {
+        Messenger.RemoveListener<bool>("PauseStatus", PauseStatus);
+    }
+
 }
