@@ -84,8 +84,6 @@ public class EnemyProjectileController : MonoBehaviour {
 
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Oil") return;
-
         if (other.tag == "Player") {
             HealthManager.HurtPlayer(damageToGive);
         }

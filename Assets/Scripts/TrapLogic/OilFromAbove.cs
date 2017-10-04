@@ -1,36 +1,57 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class OilFromAbove : MonoBehaviour {
-    
-    public BoxCollider2D oilPathCollider;
-    private Transform playerTransform;
-    private PlayerController playerController;
-    public float intervalBetweenDrops;
-    private float dropInterval;
-    public float recoveryDelay;
 
-    // Use this for initialization
-    void Start () {
-        playerController = FindObjectOfType<PlayerController>();
-        playerTransform = playerController.GetComponent<Transform>();
-        dropInterval = intervalBetweenDrops;
+    public GameObject impactEffect;
+    public float slowValue;
+
+    private bool isPaused;
+    private Transform _tr;
+
+
+    void Awake() {
+        _tr = GetComponent<Transform>(); 
     }
-    
-    // Update is called once per frame
    
-    private void OnTriggerStay2D(Collider2D collision) {
-        if (oilPathCollider.bounds.Contains(playerTransform.position)) {
-            dropInterval -= Time.deltaTime;
-            if (dropInterval < 0) {      
-                playerController.gotOiled();
-                dropInterval = intervalBetweenDrops;
-            }
+
+
+    void Start() {
+        Messenger.AddListener<bool>(EMessage.PauseStatus.ToString(), PauseStatus);
+    }
+
+
+
+    // Получение от слушателя информации о паузе, остановка движения пуль
+    void PauseStatus(bool isPaused) {
+        this.isPaused = isPaused;
+
+        if (isPaused) {
+            _tr.DOPause();
+        }
+        else {
+            _tr.DOPlay();
         }
     }
-    private IEnumerator OnTriggerExit2D(Collider2D collision) {
-        yield return new WaitForSeconds(recoveryDelay);
-        playerController.gotFreeFromOil();
+
+
+
+    void OnCollisionEnter2D(Collision2D other) {
+        if (other.transform.tag == "Player") {
+            other.gameObject.GetComponent <PlayerController>().gotOiled(slowValue);
+            Debug.Log("gotOiled");
+        }
+        impactEffect.Spawn(_tr.position, _tr.rotation);
+        gameObject.Recycle();
     }
+
+
+
+    //При разрушении объекта убираем слушатель.
+    private void OnDestroy() {
+        Messenger.RemoveListener<bool>(EMessage.PauseStatus.ToString(), PauseStatus);
+    }
+
 }

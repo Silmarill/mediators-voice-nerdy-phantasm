@@ -12,8 +12,12 @@ public class PlayerController : MonoBehaviour {
     private float moveVelosity;
     public float moveSpeed;
     public float jumpHeight;
-    public float oiledMoveSpeed;
-    private float changeableMoveSpeed;
+
+
+   // public float oiledMoveSpeed;
+
+
+   // private float changeableMoveSpeed;
 
     public Transform groundCheck;
     public float groundCheckRadius;
@@ -48,6 +52,9 @@ public class PlayerController : MonoBehaviour {
     public float climbSpeed;
     private float gravityStore;
     private bool isPaused;
+
+    private float speedMulti;
+    public float speedRecoverRatio = 0.2f;
      
     public static PlayerController me { get; private set; }
 
@@ -63,13 +70,20 @@ public class PlayerController : MonoBehaviour {
         _tr = GetComponent <Transform>();
         
         gravityStore = _r2d.gravityScale;
-        changeableMoveSpeed = moveSpeed;
+        //changeableMoveSpeed = moveSpeed;
+        speedMulti = 1;
     }
 
    void FixedUpdate() {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
     }
     void Update() {
+        if (speedMulti < 1) {
+            speedMulti += Time.deltaTime * speedRecoverRatio;
+        }
+
+        
+
         if (isGrounded) {
             isDoubleJumped = false;
         }
@@ -164,16 +178,11 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Move(float moveInput) {
-        moveVelosity = changeableMoveSpeed * moveInput;
+        moveVelosity = moveSpeed * moveInput * speedMulti;
     }
-    public void gotOiled() {
-        changeableMoveSpeed = oiledMoveSpeed;
+    public void gotOiled(float oilSlow) {
+        speedMulti = speedMulti * oilSlow ;
     }
-
-    public void gotFreeFromOil() {
-        changeableMoveSpeed = moveSpeed;
-    }
-
     public void Fire() {
         projectile.Spawn(firePoint.position, firePoint.rotation);
     }
