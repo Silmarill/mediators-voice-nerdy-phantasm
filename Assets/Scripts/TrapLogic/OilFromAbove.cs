@@ -4,69 +4,22 @@ using UnityEngine;
 using DG.Tweening;
 
 public class OilFromAbove : MonoBehaviour {
-    public float speed;
-    private float speedOnStart;
-    public GameObject deathEffect;
+
     public GameObject impactEffect;
-
-    public Rigidbody2D _r2d;
-    public Transform player;
-
-    private PlayerController playerController;
-
-    //TODO: Move this property to enemy
-    //public int pointsForKill;
     public float slowValue;
 
-
     private bool isPaused;
-    private Vector2 velocityBeforePause;
-
-
     private Transform _tr;
 
 
-    public float travelDuration;
-    public Vector3 moveDistance;
-    private Vector3 moveDistanceStorage;
-
-    public float rotationAmount;
-    private float rotationAmountStorage;
-
-    private Sequence s;
-
     void Awake() {
-        playerController = FindObjectOfType<PlayerController>();
-        player = playerController.GetComponent<Transform>();   // PlayerController.me.gameObject
-        _tr = GetComponent<Transform>();
-        speedOnStart = -speed;
-        moveDistanceStorage = moveDistance;
-        rotationAmountStorage = rotationAmount;
+        _tr = GetComponent<Transform>(); 
     }
-
-
-
-    // Use this for initialization
-    void OnEnable() {
-        s = DOTween.Sequence();
-
-        //add new animation to sequence 
-
-        /*  s.Append(_tr.DOBlendableMoveBy(moveDistance, travelDuration)
-                      .OnComplete(gameObject.Recycle) 
-                      .SetEase(Ease.Linear));  */
-        s.Append(_tr.DOMove(moveDistance, travelDuration)
-        .OnComplete(gameObject.Recycle)
-        .SetEase(Ease.Linear));
-        //join() will play WITH curret animation. Not After.
-        s.Join(_tr.DORotate(new Vector3(0, 0, rotationAmount), travelDuration, RotateMode.FastBeyond360)
-                  .SetEase(Ease.Linear));
-    }
-
+   
 
 
     void Start() {
-        Messenger.AddListener<bool>("PauseStatus", PauseStatus);
+        Messenger.AddListener<bool>(EMessage.PauseStatus.ToString(), PauseStatus);
     }
 
 
@@ -85,9 +38,9 @@ public class OilFromAbove : MonoBehaviour {
 
 
 
-   void OnCollisionEnter2D(Collision2D  other) {
+    void OnCollisionEnter2D(Collision2D other) {
         if (other.transform.tag == "Player") {
-            playerController.gotOiled(slowValue);
+            other.gameObject.GetComponent <PlayerController>().gotOiled(slowValue);
             Debug.Log("gotOiled");
         }
         impactEffect.Spawn(_tr.position, _tr.rotation);
@@ -96,18 +49,9 @@ public class OilFromAbove : MonoBehaviour {
 
 
 
-    void OnDisable() {
-        speed = speedOnStart;
-        moveDistance = moveDistanceStorage;
-        rotationAmount = rotationAmountStorage;
-
-        s.Kill();
-    }
-
-
     //При разрушении объекта убираем слушатель.
     private void OnDestroy() {
-        Messenger.RemoveListener<bool>("PauseStatus", PauseStatus);
+        Messenger.RemoveListener<bool>(EMessage.PauseStatus.ToString(), PauseStatus);
     }
 
 }

@@ -2192,7 +2192,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1463566435959610, guid: 92109ecb43ea1174a867b252edda1771, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1781613675384106, guid: 92109ecb43ea1174a867b252edda1771, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 92109ecb43ea1174a867b252edda1771, type: 2}
@@ -2503,6 +2507,17 @@ Prefab:
     - target: {fileID: 114965910006700056, guid: fdd96395c9f5af34db18cd6e4a5e2d56,
         type: 2}
       propertyPath: startupPools.Array.data[5].prefab
+      value: 
+      objectReference: {fileID: 1136552261335168, guid: b507ebd8ef0ff584c89edcb0bbd9bd95,
+        type: 2}
+    - target: {fileID: 114965910006700056, guid: fdd96395c9f5af34db18cd6e4a5e2d56,
+        type: 2}
+      propertyPath: startupPools.Array.data[6].size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114965910006700056, guid: fdd96395c9f5af34db18cd6e4a5e2d56,
+        type: 2}
+      propertyPath: startupPools.Array.data[6].prefab
       value: 
       objectReference: {fileID: 1136552261335168, guid: b507ebd8ef0ff584c89edcb0bbd9bd95,
         type: 2}
@@ -3085,9 +3100,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c85adb36797a7aa4680070d9bfd0ad49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTime: 0.5
   projectile: {fileID: 1136552261335168, guid: b507ebd8ef0ff584c89edcb0bbd9bd95, type: 2}
-  oilPoint: {fileID: 2077211755}
+  startPoint: {fileID: 2077211755}
+  endPoint: {fileID: 2092596774}
+  spawnTime: 1
+  travelDuration: 0.85
+  easeFunc: 8
 --- !u!4 &985641618 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4381388686469056, guid: e78d7170214462346b4b0aa010793c25,
@@ -3323,15 +3341,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4627935626727078, guid: 1bb6184df2d97df4db8f5f688d11af39, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -8.91
+      value: -8.9
       objectReference: {fileID: 0}
     - target: {fileID: 4627935626727078, guid: 1bb6184df2d97df4db8f5f688d11af39, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.24
+      value: -3.1989
       objectReference: {fileID: 0}
     - target: {fileID: 4627935626727078, guid: 1bb6184df2d97df4db8f5f688d11af39, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.34
       objectReference: {fileID: 0}
     - target: {fileID: 4627935626727078, guid: 1bb6184df2d97df4db8f5f688d11af39, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3356,6 +3374,15 @@ Prefab:
     - target: {fileID: 4627935626727078, guid: 1bb6184df2d97df4db8f5f688d11af39, type: 2}
       propertyPath: m_LocalScale.x
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734717570695314, guid: 1bb6184df2d97df4db8f5f688d11af39, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61364707823291494, guid: 1bb6184df2d97df4db8f5f688d11af39,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1bb6184df2d97df4db8f5f688d11af39, type: 2}
@@ -3949,6 +3976,10 @@ Prefab:
     - target: {fileID: 4130376190564924, guid: a4fa896050fa57b4eb2e97da6efa3dec, type: 2}
       propertyPath: m_RootOrder
       value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361919416102948, guid: a4fa896050fa57b4eb2e97da6efa3dec, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a4fa896050fa57b4eb2e97da6efa3dec, type: 2}
@@ -7848,7 +7879,7 @@ GameObject:
   m_Layer: 0
   m_Name: OilStartPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -7859,7 +7890,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2077211754}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.11, y: -0.51, z: 0}
+  m_LocalPosition: {x: 0, y: -0.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 985641618}
@@ -7874,9 +7905,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2092596774}
   m_Layer: 0
-  m_Name: OilEndePoint
+  m_Name: OilEndPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -7887,7 +7918,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2092596773}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.04, y: -3.47, z: 0}
+  m_LocalPosition: {x: 0, y: -3.5689, z: -0.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 985641618}

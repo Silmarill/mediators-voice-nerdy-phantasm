@@ -89,17 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efde2c1a99e4be7438895930bfecd4a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  deathEffect: {fileID: 1271020800339306, guid: 5be8c1d23c1874b46860dcbd28dad2d9,
-    type: 2}
   impactEffect: {fileID: 1587904326576880, guid: 68ca4994476dac840a6c8089a895ef7d,
     type: 2}
-  _r2d: {fileID: 0}
-  player: {fileID: 0}
   slowValue: 0.1
-  travelDuration: 1
-  moveDistance: {x: 0, y: 2, z: 0}
-  rotationAmount: 0
 --- !u!212 &212410991648631472
 SpriteRenderer:
   m_ObjectHideFlags: 1

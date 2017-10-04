@@ -12,8 +12,12 @@ public class PlayerController : MonoBehaviour {
     private float moveVelosity;
     public float moveSpeed;
     public float jumpHeight;
-    public float oiledMoveSpeed;
-    private float changeableMoveSpeed;
+
+
+   // public float oiledMoveSpeed;
+
+
+   // private float changeableMoveSpeed;
 
     public Transform groundCheck;
     public float groundCheckRadius;
@@ -48,7 +52,9 @@ public class PlayerController : MonoBehaviour {
     public float climbSpeed;
     private float gravityStore;
     private bool isPaused;
+
     private float speedMulti;
+    public float speedRecoverRatio = 0.2f;
      
     public static PlayerController me { get; private set; }
 
@@ -64,7 +70,7 @@ public class PlayerController : MonoBehaviour {
         _tr = GetComponent <Transform>();
         
         gravityStore = _r2d.gravityScale;
-        changeableMoveSpeed = moveSpeed;
+        //changeableMoveSpeed = moveSpeed;
         speedMulti = 1;
     }
 
@@ -73,8 +79,11 @@ public class PlayerController : MonoBehaviour {
     }
     void Update() {
         if (speedMulti < 1) {
-            speedMulti += Time.deltaTime;
+            speedMulti += Time.deltaTime * speedRecoverRatio;
         }
+
+        
+
         if (isGrounded) {
             isDoubleJumped = false;
         }
