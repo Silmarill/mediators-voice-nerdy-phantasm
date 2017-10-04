@@ -12,7 +12,8 @@ public class PlayerController : MonoBehaviour {
     private float moveVelosity;
     public float moveSpeed;
     public float jumpHeight;
-
+    public float oiledMoveSpeed;
+    private float changeableMoveSpeed;
 
     public Transform groundCheck;
     public float groundCheckRadius;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour {
     private bool isGrounded;
 
     private bool isDoubleJumped;
+
 
 
     private Animator _ator;
@@ -32,7 +34,6 @@ public class PlayerController : MonoBehaviour {
 
     public float shotDelay;
     private float shotDelayCounter;
-
     // AudioClip with a jumping Sound
     public AudioClip acJump;
 
@@ -47,7 +48,7 @@ public class PlayerController : MonoBehaviour {
     public float climbSpeed;
     private float gravityStore;
     private bool isPaused;
-
+     
     public static PlayerController me { get; private set; }
 
     void Awake() {
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour {
         _tr = GetComponent <Transform>();
         
         gravityStore = _r2d.gravityScale;
-
+        changeableMoveSpeed = moveSpeed;
     }
 
    void FixedUpdate() {
@@ -163,7 +164,14 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Move(float moveInput) {
-        moveVelosity = moveSpeed * moveInput;
+        moveVelosity = changeableMoveSpeed * moveInput;
+    }
+    public void gotOiled() {
+        changeableMoveSpeed = oiledMoveSpeed;
+    }
+
+    public void gotFreeFromOil() {
+        changeableMoveSpeed = moveSpeed;
     }
 
     public void Fire() {
