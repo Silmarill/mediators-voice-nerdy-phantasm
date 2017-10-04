@@ -20,20 +20,10 @@ public class ManTrap : MonoBehaviour {
         if (senpai.name == "MY_HERO") {
             HealthManager.HurtPlayer(damageToGive);
             VoiceManager.me.PlayNoiseSound(acHurt);
-
-            PlayerController player = senpai.GetComponent<PlayerController>();
-            player.knockbackCount = player.knockbackLength;
-
-            if (senpai.GetComponent<Transform>().position.x < _tr.position.x) {
-                player.knockFromRight = true;
+            if (isOneTimeUse) {
+                trapTrigger.enabled = false;
             }
-            else {
-                player.knockFromRight = false;
-            }
-
         }
-        if (isOneTimeUse) {
-            trapTrigger.enabled = false;
-        }
+        
     }
 }

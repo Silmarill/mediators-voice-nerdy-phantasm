@@ -87,6 +87,7 @@ public class ProjectileController : MonoBehaviour {
 
 
     void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "Oil") return;
 
         if (other.tag == "Enemy") {
             other.GetComponent <EnemyHealthManager>().GiveDamage(damageToGive);
@@ -95,7 +96,7 @@ public class ProjectileController : MonoBehaviour {
         if (other.tag == "Boss") {
             other.GetComponent <BossHealthManager>().GiveDamage(damageToGive);
         }
-
+        
         impactEffect.Spawn(_tr.position, _tr.rotation);
         gameObject.Recycle();
     }
