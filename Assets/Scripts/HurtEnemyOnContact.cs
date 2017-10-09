@@ -22,5 +22,9 @@ public class HurtEnemyOnContact : MonoBehaviour {
             other.GetComponent<EnemyHealthManager>().GiveDamage(damageToGive);
             _r2d.velocity = new Vector2(_r2d.velocity.x, bounceOnEnemy);
         }
+        if (other.tag == "Enemy_Thief") {
+            other.GetComponent<ThiefHealthManager>().GiveDamage(damageToGive);
+            _r2d.velocity = new Vector2(_r2d.velocity.x, bounceOnEnemy);
+        }
     }
 }

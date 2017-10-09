@@ -92,7 +92,9 @@ public class ProjectileController : MonoBehaviour {
         if (other.tag == "Enemy") {
             other.GetComponent <EnemyHealthManager>().GiveDamage(damageToGive);
         }
-
+        if (other.tag == "Enemy_Thief") {
+            other.GetComponent<ThiefHealthManager>().GiveDamage(damageToGive);
+        }
         if (other.tag == "Boss") {
             other.GetComponent <BossHealthManager>().GiveDamage(damageToGive);
         }
