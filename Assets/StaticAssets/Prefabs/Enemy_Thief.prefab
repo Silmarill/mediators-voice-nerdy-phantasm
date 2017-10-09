@@ -56,10 +56,10 @@ GameObject:
   - component: {fileID: 58315103590178792}
   - component: {fileID: 114020024549041106}
   - component: {fileID: 114338184954867744}
-  - component: {fileID: 114549336772964818}
+  - component: {fileID: 114702876541580354}
   m_Layer: 13
   m_Name: Enemy_Thief
-  m_TagString: Enemy
+  m_TagString: Enemy_Thief
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,7 +86,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1164371508541352}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.22, y: 2.29, z: -0.34}
+  m_LocalPosition: {x: -1.46, y: 2.31, z: -0.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4837169106412328}
@@ -102,7 +102,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1093974409097020}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.99, y: -0.91, z: 0.00015625358}
+  m_LocalPosition: {x: -1.01, y: -0.81, z: 0.00015625358}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4268163618386188}
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   playerRange: 6
-  returnTime: 2
+  returnTime: 1
   isFollowOnLookAway: 1
   wallCheck: {fileID: 4864092397821252}
   wallCheckRadius: 0.1
@@ -244,7 +244,7 @@ MonoBehaviour:
     m_Bits: 256
   edgeCheck: {fileID: 4837169106412328}
   yDifference: 1
---- !u!114 &114549336772964818
+--- !u!114 &114702876541580354
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -252,15 +252,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1164371508541352}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9564b9b18ddc8849b2780c2af6c0f1f, type: 3}
+  m_Script: {fileID: 11500000, guid: 435bb0a10e927e845acc0e4a7876f090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 5
-  deathEffect: {fileID: 1271020800339306, guid: 5be8c1d23c1874b46860dcbd28dad2d9,
-    type: 2}
+  enemyHealth: 2
   pointsOnDeath: 0
-  _ator: {fileID: 95313465071667206}
   acEnemy: {fileID: 8300000, guid: c8251eb6b8514e74aa7d85135b6a4b46, type: 3}
+  _ator: {fileID: 95313465071667206}
 --- !u!212 &212085472261450078
 SpriteRenderer:
   m_ObjectHideFlags: 1
