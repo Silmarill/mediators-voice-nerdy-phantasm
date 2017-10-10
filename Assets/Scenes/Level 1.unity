@@ -526,7 +526,8 @@ Prefab:
       propertyPath: enemyHealth
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 61076174053164032, guid: ee49c8713d76abe4391e009e0c08c97f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: ee49c8713d76abe4391e009e0c08c97f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &210412269

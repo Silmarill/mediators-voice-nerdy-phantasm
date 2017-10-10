@@ -44,7 +44,7 @@ public class EnemyThiefController : MonoBehaviour {
     public float angryTime;
     private float angryCheck;
     private bool inAngryState;
-    private BoxCollider2D boxCollider2D;
+  //  private BoxCollider2D boxCollider2D;
     private EnemyThiefAttack enemyThiefAttack;
 
     // Use this for initialization
@@ -52,7 +52,7 @@ public class EnemyThiefController : MonoBehaviour {
         _tr = GetComponent<Transform>();
         _ator = GetComponent<Animator>();
         _r2d = GetComponent<Rigidbody2D>();
-        boxCollider2D = GetComponent<BoxCollider2D>();
+     //   boxCollider2D = GetComponent<BoxCollider2D>();
         thePlayer = FindObjectOfType<PlayerController>().GetComponent<Transform>();
         enemyThiefAttack = FindObjectOfType<EnemyThiefAttack>();
         isAttacking = false;
@@ -178,7 +178,7 @@ public class EnemyThiefController : MonoBehaviour {
     }
     public void DeAngryMode() {
         _ator.SetBool("isAngry", false);
-        boxCollider2D.enabled = false;
+      //  boxCollider2D.enabled = false;
         inAngryState = false;
         enemyThiefAttack.PlayerWasHit = false;
     }
@@ -189,7 +189,7 @@ public class EnemyThiefController : MonoBehaviour {
             inAngryState = true;
             attackCollider.enabled = false;
             isAttacking = false;
-            boxCollider2D.enabled = true;
+       //     boxCollider2D.enabled = true;
         }
     }
     public void PlaySoundIfWasHit() {
