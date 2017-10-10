@@ -87,6 +87,9 @@ public class EnemyProjectileController : MonoBehaviour {
         if (other.tag == "Player") {
             HealthManager.HurtPlayer(damageToGive);
         }
+        if (other.tag == "Untagged") {
+            return;
+        }
         
         impactEffect.Spawn(_tr.position, _tr.rotation);
         gameObject.Recycle();

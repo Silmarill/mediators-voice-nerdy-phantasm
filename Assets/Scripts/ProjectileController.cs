@@ -87,12 +87,14 @@ public class ProjectileController : MonoBehaviour {
 
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Oil") return;
+        if (other.tag == "Untagged") return;
 
         if (other.tag == "Enemy") {
             other.GetComponent <EnemyHealthManager>().GiveDamage(damageToGive);
         }
-
+        if (other.tag == "Enemy_Thief") {
+          //  other.GetComponent<ThiefHealthManager>().GiveDamage(damageToGive);
+        }
         if (other.tag == "Boss") {
             other.GetComponent <BossHealthManager>().GiveDamage(damageToGive);
         }
