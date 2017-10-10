@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: c2b49efeb8b6ebb4b8eb23ec07cfa856
-timeCreated: 1507551862
+timeCreated: 1507620426
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -52,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 54
+  spritePixelsToUnits: 56
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -93,12 +93,12 @@ TextureImporter:
       name: Thief_Death_0
       rect:
         serializedVersion: 2
-        x: 47
+        x: 0
         y: 256
-        width: 63
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.6, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -107,12 +107,12 @@ TextureImporter:
       name: Thief_Death_1
       rect:
         serializedVersion: 2
-        x: 178
-        y: 262
-        width: 66
-        height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.6, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -121,12 +121,12 @@ TextureImporter:
       name: Thief_Death_2
       rect:
         serializedVersion: 2
-        x: 237
-        y: 297
-        width: 6
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.6, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -135,54 +135,12 @@ TextureImporter:
       name: Thief_Death_3
       rect:
         serializedVersion: 2
-        x: 178
-        y: 283
-        width: 7
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Thief_Death_4
-      rect:
-        serializedVersion: 2
-        x: 211
-        y: 258
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Thief_Death_5
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 147
-        width: 37
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Thief_Death_6
-      rect:
-        serializedVersion: 2
-        x: 210
-        y: 162
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.6, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

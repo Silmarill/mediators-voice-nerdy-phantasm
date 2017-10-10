@@ -8,12 +8,14 @@ public class EnemyThiefController : MonoBehaviour {
     public float moveSpeed;
     private bool isMoveRight;
 
+
     public float playerRange;
 
     private Transform _tr;
     private Animator _ator;
     private Rigidbody2D _r2d;
     private bool isInRange;
+    public AudioClip playerHurt;
 
     public float returnTime;
     private bool isReturning;
@@ -22,7 +24,7 @@ public class EnemyThiefController : MonoBehaviour {
     private bool isFacingAway;
     public bool isFollowOnLookAway;
 
-    
+
     public Transform wallCheck;
     public float wallCheckRadius;
     public LayerMask whatIsWall;
@@ -32,27 +34,58 @@ public class EnemyThiefController : MonoBehaviour {
     public Transform edgeCheck;
 
     public float yDifference;
-    
+
+    public BoxCollider2D attackCollider;
+    private bool isAttacking;
+    public float attackTime;
+    private float attackCheck;
+    public int hurtPlayerValue;
+
+    public float angryTime;
+    private float angryCheck;
+    private bool inAngryState;
+    private BoxCollider2D boxCollider2D;
+    private EnemyThiefAttack enemyThiefAttack;
 
     // Use this for initialization
     void Start() {
         _tr = GetComponent<Transform>();
         _ator = GetComponent<Animator>();
         _r2d = GetComponent<Rigidbody2D>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
         thePlayer = FindObjectOfType<PlayerController>().GetComponent<Transform>();
-        
-        
-
+        enemyThiefAttack = FindObjectOfType<EnemyThiefAttack>();
+        isAttacking = false;
+        inAngryState = false;
+        attackCheck = attackTime;
     }
 
     // Update is called once per frame
     void Update() {
         if (!isFollowOnLookAway) return;
-
-        _ator.SetFloat("Speed", Mathf.Abs(_r2d.velocity.x));
- 
-        isWallHitted = Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, whatIsWall);
         
+        if (inAngryState) {  
+            
+            angryCheck -= Time.deltaTime;
+            
+            if (angryCheck < 0) {
+
+                DeActivateTrigger();
+
+                DeAngryMode();
+            }
+            return;
+        }
+        if (isAttacking) {
+            attackCheck -= Time.deltaTime;   
+            if (attackCheck < 0) { 
+                DeActivateTrigger();
+            }
+            return;
+        }
+        _ator.SetFloat("Speed", Mathf.Abs(_r2d.velocity.x));
+        isWallHitted = Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, whatIsWall);
+
         atEdge = Physics2D.OverlapCircle(edgeCheck.position, wallCheckRadius, whatIsWall);
 
         if ((thePlayer.position.x < _tr.position.x && thePlayer.localScale.x < 0) ||
@@ -62,13 +95,13 @@ public class EnemyThiefController : MonoBehaviour {
         else {
             isFacingAway = false;
         }
-        
+
         if (isReturning) {
             timeCheck -= Time.deltaTime;
             if (timeCheck < 0) {
-                isReturning = false;     
+                isReturning = false;
                 CheckDirection();
-                if (IfInRangeX()) MovingDirection(); 
+                if (IfInRangeX()) MovingDirection();
                 return;
             }
             MovingDirection();
@@ -82,17 +115,17 @@ public class EnemyThiefController : MonoBehaviour {
                 ToStepBefore();
                 MovingDirection();
                 timeCheck = Time.deltaTime + returnTime;
-                isReturning = true; 
+                isReturning = true;
                 return;
             }
             CheckDirection();
             MovingDirection();
-            }
+        }
     }
 
 
     private bool IfInRangeX() {
-        if ( Mathf.Abs(thePlayer.position.x - _tr.position.x)  <  playerRange) {
+        if (Mathf.Abs(thePlayer.position.x - _tr.position.x) < playerRange) {
             isInRange = true;
             return true;
         }
@@ -106,7 +139,7 @@ public class EnemyThiefController : MonoBehaviour {
         return false;
     }
     void ToStepBefore() {
-        
+
         isMoveRight = !isMoveRight;
 
     }
@@ -118,7 +151,7 @@ public class EnemyThiefController : MonoBehaviour {
             isMoveRight = false;
         }
     }
-    void MovingDirection() {       
+    void MovingDirection() {
         if (isMoveRight) {
             _tr.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
             _r2d.velocity = new Vector2(moveSpeed, _r2d.velocity.y);
@@ -131,4 +164,40 @@ public class EnemyThiefController : MonoBehaviour {
     public void Destroyer() {
         Destroy(gameObject);
     }
+    public void ActivateTrigger() {
+        if (isAttacking) return;
+        attackCheck = attackTime;
+        attackCollider.enabled = true;
+        isAttacking = true;
+        _r2d.velocity = new Vector2(0, _r2d.velocity.y);
+    }
+    public void DeActivateTrigger() {
+        _ator.SetBool("isAttacking", false);
+        attackCollider.enabled = false;
+        isAttacking = false;
+    }
+    public void DeAngryMode() {
+        _ator.SetBool("isAngry", false);
+        boxCollider2D.enabled = false;
+        inAngryState = false;
+        enemyThiefAttack.PlayerWasHit = false;
+    }
+    public void CheckAngryMode() {
+        if ((!enemyThiefAttack.PlayerWasHit) && (!inAngryState)) {
+            _ator.SetBool("isAngry", true);
+            angryCheck = angryTime;
+            inAngryState = true;
+            attackCollider.enabled = false;
+            isAttacking = false;
+            boxCollider2D.enabled = true;
+        }
+    }
+    public void PlaySoundIfWasHit() {
+        if (enemyThiefAttack.PlayerWasHit) {
+            VoiceManager.me.PlayNoiseSound(playerHurt); 
+        }
+    }
+    public void HitPlayer() {
+        if (enemyThiefAttack.PlayerWasHit) HealthManager.HurtPlayer(hurtPlayerValue);
+    }  
 }

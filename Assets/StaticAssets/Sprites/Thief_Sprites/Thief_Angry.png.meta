@@ -1,15 +1,12 @@
 fileFormatVersion: 2
-guid: c7dbfb11ba6a1d94eb187f2b2011940f
-timeCreated: 1507620751
+guid: 2c7d3a2c8a7d22547be1110745abccaf
+timeCreated: 1507628211
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Thief_Walking_0
-    21300002: Thief_Walking_1
-    21300004: Thief_Walking_2
-    21300006: Thief_Walking_3
-    21300008: Thief_Walking_4
-    21300010: Thief_Walking_5
+    21300000: Thief_Angry_0
+    21300002: Thief_Angry_1
+    21300004: Thief_Angry_2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -89,35 +86,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Thief_Walking_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 256
-        width: 128
-        height: 128
-      alignment: 9
-      pivot: {x: 0.505, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Thief_Walking_1
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 256
-        width: 128
-        height: 128
-      alignment: 9
-      pivot: {x: 0.505, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Thief_Walking_2
+      name: Thief_Angry_0
       rect:
         serializedVersion: 2
         x: 0
@@ -125,13 +94,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.505, y: 0.3}
+      pivot: {x: 0.6, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Thief_Walking_3
+      name: Thief_Angry_1
       rect:
         serializedVersion: 2
         x: 128
@@ -139,13 +108,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.505, y: 0.3}
+      pivot: {x: 0.6, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Thief_Walking_4
+      name: Thief_Angry_2
       rect:
         serializedVersion: 2
         x: 0
@@ -153,21 +122,7 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.505, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Thief_Walking_5
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 128
-        height: 128
-      alignment: 9
-      pivot: {x: 0.505, y: 0.3}
+      pivot: {x: 0.6, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

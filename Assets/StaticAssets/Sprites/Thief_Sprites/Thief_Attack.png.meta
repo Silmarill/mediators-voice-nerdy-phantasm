@@ -1,15 +1,18 @@
 fileFormatVersion: 2
-guid: c7dbfb11ba6a1d94eb187f2b2011940f
-timeCreated: 1507620751
+guid: 1e6633c73151c7f4882402cdc5ffca44
+timeCreated: 1507620321
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Thief_Walking_0
-    21300002: Thief_Walking_1
-    21300004: Thief_Walking_2
-    21300006: Thief_Walking_3
-    21300008: Thief_Walking_4
-    21300010: Thief_Walking_5
+    21300000: Thief_Attack_0
+    21300002: Thief_Attack_2
+    21300004: Thief_Attack_3
+    21300006: Thief_Attack_6
+    21300008: Thief_Attack_7
+    21300010: Thief_Attack_8
+    21300012: Thief_Attack_1
+    21300014: Thief_Attack_4
+    21300016: Thief_Attack_5
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -89,7 +92,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Thief_Walking_0
+      name: Thief_Attack_0
       rect:
         serializedVersion: 2
         x: 0
@@ -97,13 +100,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.505, y: 0.3}
+      pivot: {x: 0.6, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Thief_Walking_1
+      name: Thief_Attack_1
       rect:
         serializedVersion: 2
         x: 128
@@ -111,13 +114,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.505, y: 0.3}
+      pivot: {x: 0.6, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Thief_Walking_2
+      name: Thief_Attack_2
       rect:
         serializedVersion: 2
         x: 0
@@ -125,13 +128,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.505, y: 0.3}
+      pivot: {x: 0.6, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Thief_Walking_3
+      name: Thief_Attack_3
       rect:
         serializedVersion: 2
         x: 128
@@ -139,13 +142,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.505, y: 0.3}
+      pivot: {x: 0.6, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Thief_Walking_4
+      name: Thief_Attack_4
       rect:
         serializedVersion: 2
         x: 0
@@ -153,13 +156,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.505, y: 0.3}
+      pivot: {x: 0.6, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Thief_Walking_5
+      name: Thief_Attack_5
       rect:
         serializedVersion: 2
         x: 128
@@ -167,7 +170,7 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.505, y: 0.3}
+      pivot: {x: 0.6, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

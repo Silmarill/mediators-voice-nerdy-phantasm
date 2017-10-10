@@ -87,7 +87,7 @@ public class ProjectileController : MonoBehaviour {
 
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Oil") return;
+        if (other.tag == "Untagged") return;
 
         if (other.tag == "Enemy") {
             other.GetComponent <EnemyHealthManager>().GiveDamage(damageToGive);

@@ -13,7 +13,6 @@ public class ThiefHealthManager : MonoBehaviour {
         if (enemyHealth <= 0) {
             Messenger.Broadcast("AddPoints", pointsOnDeath);
             _ator.SetBool("isDead", true);
-
         }
     }
 

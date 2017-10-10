@@ -9,8 +9,8 @@ TagManager:
   - MovingPlatform
   - Boss
   - BossWall
-  - Oil
   - Enemy_Thief
+  - EnemyAttack
   layers:
   - Default
   - TransparentFX
