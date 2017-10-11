@@ -47,6 +47,8 @@ public class EnemyThiefController : MonoBehaviour {
   //  private BoxCollider2D boxCollider2D;
     private EnemyThiefAttack enemyThiefAttack;
 
+    
+
     // Use this for initialization
     void Start() {
         _tr = GetComponent<Transform>();
@@ -54,7 +56,9 @@ public class EnemyThiefController : MonoBehaviour {
         _r2d = GetComponent<Rigidbody2D>();
      //   boxCollider2D = GetComponent<BoxCollider2D>();
         thePlayer = FindObjectOfType<PlayerController>().GetComponent<Transform>();
-        enemyThiefAttack = FindObjectOfType<EnemyThiefAttack>();
+        enemyThiefAttack = (EnemyThiefAttack)GetComponentInChildren(typeof(EnemyThiefAttack));
+        
+
         isAttacking = false;
         inAngryState = false;
         attackCheck = attackTime;
@@ -77,12 +81,18 @@ public class EnemyThiefController : MonoBehaviour {
             return;
         }
         if (isAttacking) {
+            if(!_ator.GetBool("isAttacking")) isAttacking = !isAttacking;
+            return;
+        }
+        
+       /* if (isAttacking) {
             attackCheck -= Time.deltaTime;   
             if (attackCheck < 0) { 
                 DeActivateTrigger();
+                
             }
             return;
-        }
+        }  */
         _ator.SetFloat("Speed", Mathf.Abs(_r2d.velocity.x));
         isWallHitted = Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, whatIsWall);
 
@@ -199,5 +209,14 @@ public class EnemyThiefController : MonoBehaviour {
     }
     public void HitPlayer() {
         if (enemyThiefAttack.PlayerWasHit) HealthManager.HurtPlayer(hurtPlayerValue);
-    }  
+    }
+    public bool IsAttacking {
+        get {
+            return isAttacking;
+        }
+
+        set {
+            isAttacking = value;
+        }
+    }
 }
