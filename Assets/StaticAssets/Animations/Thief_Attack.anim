@@ -82,28 +82,28 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_Events:
   - time: 0.33333334
-    functionName: ActivateTrigger
+    functionName: CheckIfPlayerWasHit
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.35
+  - time: 0.36666667
+    functionName: PlaySoundIfWasHit
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.36666667
     functionName: HitPlayer
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.35
+  - time: 0.71666664
     functionName: CheckAngryMode
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.35
-    functionName: PlaySoundIfWasHit
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
