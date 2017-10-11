@@ -74,7 +74,12 @@ public class PlayerController : MonoBehaviour {
         speedMulti = 1;
     }
 
+      void OnDrawGizmosSelected() {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(groundCheck.position, groundCheckRadius);
+    }
    void FixedUpdate() {
+        
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
     }
     void Update() {

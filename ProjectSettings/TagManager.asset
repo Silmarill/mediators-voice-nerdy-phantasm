@@ -11,6 +11,7 @@ TagManager:
   - BossWall
   - Enemy_Thief
   - EnemyAttack
+  - EnemyBig
   layers:
   - Default
   - TransparentFX

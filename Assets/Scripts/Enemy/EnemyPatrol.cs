@@ -17,9 +17,14 @@ public class EnemyPatrol : MonoBehaviour {
 
     private Rigidbody2D _r2d;
     private Transform _tr;
+
+    private Vector3 initScale;
+
     void Start() {
+        
         _r2d = GetComponent <Rigidbody2D>();
         _tr = GetComponent <Transform>();
+        initScale = _tr.localScale;
         
     }
 
@@ -37,10 +42,10 @@ public class EnemyPatrol : MonoBehaviour {
         }
 
         if (isMoveRight) {
-            _tr.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+            _tr.localScale = new Vector3(-initScale.x, initScale.y, initScale.z);
             _r2d.velocity = new Vector2(moveSpeed, _r2d.velocity.y);
         } else {
-             _tr.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+             _tr.localScale = new Vector3(initScale.x, initScale.y, initScale.z);
             _r2d.velocity = new Vector2(-moveSpeed, _r2d.velocity.y);
         }
 
