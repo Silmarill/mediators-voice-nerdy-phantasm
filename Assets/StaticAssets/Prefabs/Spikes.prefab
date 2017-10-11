@@ -21,11 +21,12 @@ GameObject:
   - component: {fileID: 4905127192151062}
   - component: {fileID: 212101565006484168}
   - component: {fileID: 61986368544399132}
-  - component: {fileID: 114855119710489752}
   - component: {fileID: 114065102872423542}
+  - component: {fileID: 114391202960491098}
+  - component: {fileID: 95043984979713422}
   m_Layer: 0
   m_Name: Spikes
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1405766696572020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.9, y: -2.07, z: 0}
+  m_LocalPosition: {x: 10.03, y: -1.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -59,7 +60,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.875, y: 1}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -68,6 +69,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.64199066}
   m_EdgeRadius: 0
+--- !u!95 &95043984979713422
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1405766696572020}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3a3831572188b7d4eac163228dcb08c0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114065102872423542
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -79,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0925e5317cc2424dacb027ebd68ac13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114855119710489752
+--- !u!114 &114391202960491098
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -87,9 +105,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1405766696572020}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af70bf329e3bb8e469f72381448861b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 83c72f9734903ca4cb0fd01b64a9d270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageToGive: 200
+  acHurt: {fileID: 8300000, guid: 6c6c680413d0ef14d9a1ba36807293b4, type: 3}
 --- !u!212 &212101565006484168
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -122,7 +142,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300004, guid: 94de954d8621b484393dc725e3c900d6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fd1bfe562c9d53742bde4cb83dee2506, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

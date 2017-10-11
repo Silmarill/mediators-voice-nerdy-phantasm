@@ -306,7 +306,6 @@ MonoBehaviour:
   attackTime: 5
   hurtPlayerValue: 1
   angryTime: 3
-  enemyThiefAttack: {fileID: 0}
 --- !u!114 &114373155509059956
 MonoBehaviour:
   m_ObjectHideFlags: 1
